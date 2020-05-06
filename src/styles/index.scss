@@ -1,0 +1,24 @@
+@import "./variables.scss";
+@import "./transition.scss";
+@import "./public.scss";
+@import "./mixin.scss";
+@import "./element-variables.scss";
+$blue: blue;
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  background-color: white;
+}
+.bg {
+  background-color: #f4f5f5;
+}
+.bg-white {
+  background-color: white;
+}
+.xs-hide {
+  display: flex;
+}
+
+@import "./media.scss";
