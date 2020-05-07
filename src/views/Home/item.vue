@@ -14,12 +14,12 @@
       <p class="desc">{{ item.blog_brief }}</p>
       <ul class="action-list flex-center">
         <li>
-          <img src="@i/like.svg" />
-          <span>100</span>
+          <img src="@i/like.svg" style="color:red" />
+          <span>{{ (Math.random() * 100).toFixed(0) }}</span>
         </li>
         <li>
           <img src="@i/comment.svg" />
-          <span>1</span>
+          <span>{{ (Math.random() * 100).toFixed(0) }}</span>
         </li>
       </ul>
     </div>

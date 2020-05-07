@@ -41,6 +41,7 @@ code {
   word-break: break-all;
   word-wrap: break-word;
   width: 100%;
+  overflow-x: auto;
 }
 code span {
   word-wrap: break-word;

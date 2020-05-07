@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <div class="flex">
+      <Action></Action>
       <ul class="home-content bg-white">
         <skeleton
           type="listcom"
@@ -11,7 +12,19 @@
             lineHight: 20,
           }"
         />
-        <div v-else class="mark-wrap" v-html="value"></div>
+        <div v-else>
+          <div class="blog-head flex-center justify-between">
+            <img :src="blogAuthor.headerImg" />
+            <div class="message">
+              <a href="">{{ blogAuthor.user_name }}</a>
+              <p>
+                {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
+              </p>
+            </div>
+            <span class="follow flex-ali">关注</span>
+          </div>
+          <div class="mark-wrap" v-html="value"></div>
+        </div>
         <!-- <mavon-editor
           v-model="value"
           :defaultOpen="'edit'"
@@ -21,7 +34,7 @@
           @change="change"
         />-->
       </ul>
-      <!-- <Aside :bannerList="bannerList"></Aside> -->
+      <Aside :bannerList="bannerList"></Aside>
     </div>
   </div>
 </template>
@@ -29,14 +42,17 @@
 <script>
 /* eslint-disable */
 import { getList, getDetail } from "@/api/home";
+import { getUserInfo } from "@/api/user";
+import { parseTime } from "@/utils/utils";
 import Link from "@/components/Link";
 import Aside from "@/components/Aside";
+import Action from "@/components/Action";
 import marked from "marked";
 import hljs from "highlight.js";
 
 export default {
   name: "Home",
-  components: { Link, Aside },
+  components: { Link, Aside, Action },
   directives: {
     high: {
       // 指令的定义
@@ -51,6 +67,7 @@ export default {
   },
   data() {
     return {
+      parseTime,
       value: "",
       loading: false,
       bannerList: [
@@ -59,6 +76,8 @@ export default {
         "https://vaegin.top/img/qingzi.jpeg",
       ],
       list: [],
+      blogDetail: {},
+      blogAuthor: {},
     };
   },
   created() {
@@ -80,13 +99,23 @@ export default {
       };
       getDetail(obj2).then((res) => {
         this.value = res.data.blog_content;
+        this.blogDetail = res.data;
         marked.setOptions({
           highlight: function(code) {
             return hljs.highlightAuto(code).value;
           },
         });
         this.value = marked(this.value);
+
+        this.getInfo(this.blogDetail.create_id);
         this.loading = false;
+      });
+    },
+    getInfo(id) {
+      let obj = { id };
+      getUserInfo(obj).then((res) => {
+        console.log(res);
+        this.blogAuthor = res.data;
       });
     },
     change(value) {},
@@ -108,8 +137,39 @@ $asideBanner: 200px;
     min-height: 100px;
     flex: 1;
   }
+  .blog-head {
+    padding: 24px 20px 0;
+    & > img {
+      width: 40px;
+      height: 40px;
+      margin-right: 12px;
+    }
+    .message {
+      flex: 1;
+      height: 100%;
+      & > a {
+        font-weight: 700;
+        color: #333;
+        font-size: 14px;
+      }
+      & > p {
+        color: #909090;
+        font-size: 12px;
+        margin-top: 4px;
+      }
+    }
+    .follow {
+      width: 55px;
+      height: 26px;
+      font-size: 13px;
+      border: 1px solid #6cbd45;
+      color: #6cbd45;
+      background-color: #fff;
+    }
+  }
   .mark-wrap {
     padding: 20px;
+    overflow-x: scroll;
     img {
       max-width: 700px;
     }

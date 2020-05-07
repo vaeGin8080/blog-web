@@ -6,8 +6,8 @@
           <img src="https://vaegin.top/img/qingzi.jpeg" />
         </a>
         <nav class="flex-sub">
-          <ul>
-            <li class="xs-hide">
+          <ul class="h-100">
+            <li class="xs-hide h-100">
               <ul class="flex-center">
                 <li
                   class="nav-item"
@@ -32,7 +32,7 @@ export default {
   name: "Header",
   data() {
     return {
-      acitve: 0,
+      acitve: 1,
       navList: [
         {
           label: "首页",
@@ -74,6 +74,7 @@ $height: 60px;
     .nav-item {
       padding: 0 15px;
       color: #71777c;
+      font-size: 16px;
     }
     .active {
       color: #007fff;
