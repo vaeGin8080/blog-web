@@ -5,18 +5,10 @@
         class="nav-item"
         :class="{ active: acitve == index }"
         v-for="(item, index) in navList"
-        @click="tabAct(index)"
+        @click="tabAct(index, item)"
         :key="index"
       >
-        <router-link
-          :to="item.path"
-          v-slot="{ href, route, navigate, isActive }"
-        >
-          <a :active="isActive" :href="href" @click="navigate">{{
-            item.label
-          }}</a>
-        </router-link>
-        <!-- <router-link :to="item.path"> {{ item.label }}</router-link> -->
+        {{ item.label }}
       </li>
     </ul>
   </div>
@@ -42,19 +34,19 @@ export default {
           path: "/home",
         },
         {
-          label: "安卓",
-          path: "/home",
-        },
-        {
-          label: "IOS",
+          label: "其他",
           path: "/home",
         },
       ],
     };
   },
   methods: {
-    tabAct(index) {
+    tabAct(index, item) {
+      if (index === this.active) return;
       this.acitve = index;
+      let label = item.label;
+      if (index == 0) label = "";
+      this.$emit("tab", label);
     },
   },
 };
@@ -78,6 +70,7 @@ export default {
       padding: 0 15px;
       color: #71777c;
       font-size: 14px;
+      cursor: pointer;
     }
     .active {
       color: #007fff;

@@ -9,11 +9,11 @@ import request from "@/utils/request";
 // }
 
 // 查询列表
-export function getList(query) {
+export function getList(data) {
   return request({
-    url: "/list",
-    method: "get",
-    params: query,
+    url: "/weblist",
+    method: "post",
+    data,
   });
 }
 

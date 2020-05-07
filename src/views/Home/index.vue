@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Nav></Nav>
+    <Nav @tab="tab"></Nav>
     <div class="flex">
       <ul class="home-content bg-white">
         <li v-if="loading">
@@ -15,16 +15,17 @@
         </li>
 
         <div v-else class="flex-sub">
-          <Link
+          <sLink
             v-for="(item, index) in list"
             :path="`/detail?id=${item.blog_id}`"
             :key="index"
           >
-            <Item :item="item"></Item>
-          </Link>
+            <Item :item="item" @handleLove="handleLove"></Item>
+          </sLink>
         </div>
+        <Empty v-if="!loading && list.length === 0"></Empty>
       </ul>
-      <!-- <Aside :bannerList="bannerList"></Aside> -->
+      <Aside :bannerList="bannerList"></Aside>
     </div>
   </div>
 </template>
@@ -33,12 +34,13 @@
 // eslint-disable-line
 import { getList } from "@/api/home";
 import Nav from "@/components/Nav";
-import Link from "@/components/Link";
+import sLink from "@/components/Link";
 import Aside from "@/components/Aside";
+import Empty from "@/components/Empty";
 import Item from "./item";
 export default {
   name: "Home",
-  components: { Nav, Link, Item, Aside },
+  components: { Nav, sLink, Item, Aside, Empty },
   data() {
     return {
       loading: false,
@@ -54,20 +56,24 @@ export default {
     this.init();
   },
   methods: {
-    init() {
+    init(tag) {
       this.loading = true;
-      let obj = {
-        operationName: "",
-        query: "",
-        variables: { first: 20, after: "", order: "POPULAR" },
-        extensions: { query: { id: "21207e9ddb1de777adeaca7a2fb38030" } },
-      };
-      getList().then((res) => {
-        // this.list = res.data.articleFeed.items.edges;
+      let obj = {};
+      if (tag) {
+        obj = {
+          tag,
+        };
+      }
+      getList(obj).then((res) => {
         this.list = res.data;
-        console.log(this.list);
         this.loading = false;
       });
+    },
+    tab(tag) {
+      this.init(tag);
+    },
+    handleLove(item) {
+      item.isLike = true;
     },
   },
 };

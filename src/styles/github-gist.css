@@ -37,6 +37,15 @@ h5,
 h6 {
   margin: 15px 0;
 }
+code {
+  word-break: break-all;
+  word-wrap: break-word;
+  width: 100%;
+}
+code span {
+  word-wrap: break-word;
+  word-break: break-all;
+}
 .hljs-variable,
 .hljs-template-variable,
 .hljs-strong,

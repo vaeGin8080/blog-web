@@ -57,6 +57,7 @@ module.exports = {
     resolve: {
       alias: {
         "@": resolve("src"),
+        "@i": resolve("src/assets/img"),
       },
     },
   },

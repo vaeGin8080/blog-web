@@ -35,13 +35,13 @@ export default {
       acitve: 0,
       navList: [
         {
+          label: "首页",
+          path: "/index",
+        },
+        {
           label: "文章",
           path: "/home",
         },
-        // {
-        //   label: "沸点",
-        //   path: "/home",
-        // },
         // {
         //   label: "话题",
         //   path: "/home",

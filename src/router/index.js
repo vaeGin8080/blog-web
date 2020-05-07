@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
-
+import Index from "@/views/Index";
 Vue.use(VueRouter);
 
 const constantRoutes = [
@@ -18,6 +18,11 @@ const constantRoutes = [
           import(/* webpackChunkName: "about" */ "../views/Home/index.vue"),
       },
     ],
+  },
+  {
+    path: "/index",
+    name: "Index",
+    component: Index,
   },
   {
     path: "/detail",

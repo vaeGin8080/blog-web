@@ -15,7 +15,6 @@ service.interceptors.request.use(
   (config) => {
     // do something before request is sent
     let uid = store.getters.uid;
-    console.log(uid);
     config.headers = {
       "X-Agent": "Juejin/Web",
       uid: uid,

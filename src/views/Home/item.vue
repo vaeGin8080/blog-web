@@ -12,7 +12,16 @@
       </p>
       <b class="title">{{ item.blog_title }}</b>
       <p class="desc">{{ item.blog_brief }}</p>
-      <div class="action-list"></div>
+      <ul class="action-list flex-center">
+        <li>
+          <img src="@i/like.svg" />
+          <span>100</span>
+        </li>
+        <li>
+          <img src="@i/comment.svg" />
+          <span>1</span>
+        </li>
+      </ul>
     </div>
     <div
       class="avter xs-hide"
@@ -41,6 +50,7 @@ export default {
       parseTime,
     };
   },
+  methods: {},
 };
 </script>
 
@@ -77,6 +87,28 @@ $box: 60px;
   .avter {
     width: $box;
     height: $box;
+  }
+  .action-list {
+    & > li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 26px;
+      white-space: nowrap;
+      color: #b2bac2;
+      border-radius: 1px;
+      border: 1px solid #edeeef;
+      padding: 0 10px;
+      font-size: 12px;
+      line-height: 1;
+      z-index: 66;
+      &:last-child {
+        border-left: none;
+      }
+      span {
+        margin-left: 5px;
+      }
+    }
   }
 }
 </style>
