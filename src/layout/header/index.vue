@@ -6,7 +6,7 @@
           <img src="https://vaegin.top/img/qingzi.jpeg" />
         </a>
         <nav class="flex-sub">
-          <ul class="h-100">
+          <ul class="h-100 flex-center justify-between">
             <li class="xs-hide h-100">
               <ul class="flex-center">
                 <li
@@ -20,46 +20,56 @@
                 </li>
               </ul>
             </li>
+            <li class="head-form">
+              <span @click="showDialog(0)">登录</span>
+              <i>·</i>
+              <span @click="showDialog(1)">注册</span>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
+    <Dialog v-if="show" :show.sync="show" :title="type == 0 ? '登录' : '注册'">
+      <Login v-if="type == 0" @onChange="showDialog" @close="close"></Login>
+      <Register v-else @onChange="showDialog" @close="close"></Register>
+    </Dialog>
   </div>
 </template>
 
 <script>
+import Dialog from "@/components/Dialog";
+import Login from "@/components/Login";
+import Register from "@/components/Register";
 export default {
   name: "Header",
+  components: { Dialog, Login, Register },
   data() {
     return {
       acitve: 1,
+      show: false,
+      type: 0,
       navList: [
         {
           label: "首页",
-          path: "/index",
+          path: "/home",
         },
         {
           label: "文章",
           path: "/home",
         },
-        // {
-        //   label: "话题",
-        //   path: "/home",
-        // },
-        // {
-        //   label: "小册",
-        //   path: "/home",
-        // },
-        // {
-        //   label: "活动",
-        //   path: "/home",
-        // },
       ],
     };
   },
   methods: {
     tabAct(index) {
       this.acitve = index;
+    },
+    showDialog(type) {
+      this.type = type;
+      this.show = true;
+    },
+    close() {
+      this.show = false;
     },
   },
 };
@@ -91,6 +101,16 @@ $height: 60px;
       height: 38px;
       object-fit: contain;
       border-radius: 50%;
+    }
+  }
+  .head-form {
+    color: #007fff;
+    font-size: 16px;
+    & > i {
+      margin: 0 5px;
+    }
+    & > span {
+      cursor: pointer;
     }
   }
 }

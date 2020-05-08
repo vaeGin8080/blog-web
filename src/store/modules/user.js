@@ -1,7 +1,14 @@
+import { setSession, getSession } from "@/utils/session";
 export default {
   state: {
-    uid: "",
+    uid: 1,
+    userInfo: getSession("userInfo") || {},
   },
-  mutations: {},
+  mutations: {
+    handleUserInfo(state, data) {
+      state.userInfo = data;
+      setSession("userInfo", state.userInfo);
+    },
+  },
   actions: {},
 };

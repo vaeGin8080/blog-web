@@ -1,14 +1,12 @@
 <template>
   <div class="article-action">
-    <div class="btn like" @click="love">
-      <span>{{ (Math.random() * 100).toFixed(0) }}</span>
+    <div class="btn" :class="[item.like ? 'liked' : 'like']" @click="love">
+      <span v-if="item.likeCount">{{ item.likeCount }}</span>
     </div>
     <div class="btn comment">
-      <span>{{ (Math.random() * 100).toFixed(0) }}</span>
+      <span v-if="item.commentCount">{{ item.commentCount }}</span>
     </div>
-    <div class="btn collect">
-      <span>{{ (Math.random() * 100).toFixed(0) }}</span>
-    </div>
+    <div class="btn collect"></div>
   </div>
 </template>
 
@@ -27,7 +25,9 @@ export default {
     return {};
   },
   methods: {
-    love() {},
+    love() {
+      this.$emit("love", this.item.likeCount);
+    },
   },
 };
 </script>

@@ -1,9 +1,9 @@
 <template>
   <div class="aside">
-    <div class="info flex-center flex-direction">
+    <!-- <div class="info flex-center flex-direction">
       <img :src="url" class="animation-mi" />
       <h2>晓风残月</h2>
-    </div>
+    </div> -->
     <!-- <div v-for="(item, index) in bannerList" :key="index" class="aside-banner">
       <div
         :style="{

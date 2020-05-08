@@ -4,7 +4,7 @@
       <p class="info">
         <i class="info-act">专栏 </i>
         <span>{{ item.blog_author }}</span>
-        {{ parseTime(item.create_date, "{y}-{m}-{d} {h}:{i}:{s}") }}
+        {{ item.create_date | parseTime }}
         <span>{{ item.blog_tag }}</span>
         <!-- <span v-for="(itemTag, indexTag) in item.node.tags" :key="indexTag"
           >A·{{ itemTag.title }}</span
@@ -15,11 +15,11 @@
       <ul class="action-list flex-center">
         <li>
           <img src="@i/like.svg" style="color:red" />
-          <span>{{ (Math.random() * 100).toFixed(0) }}</span>
+          <span>{{ item.likeCount }}</span>
         </li>
         <li>
           <img src="@i/comment.svg" />
-          <span>{{ (Math.random() * 100).toFixed(0) }}</span>
+          <span>{{ item.commentCount }}</span>
         </li>
       </ul>
     </div>
@@ -35,7 +35,6 @@
 
 <script>
 // eslint-disable-line
-import { parseTime } from "@/utils/utils";
 export default {
   props: {
     item: {
@@ -46,9 +45,7 @@ export default {
     },
   },
   data() {
-    return {
-      parseTime,
-    };
+    return {};
   },
   methods: {},
 };
