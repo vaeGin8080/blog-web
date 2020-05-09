@@ -75,42 +75,7 @@ export default {
       list: [],
       blogDetail: {},
       blogAuthor: {},
-      comment: [
-        {
-          name: "晓风残月",
-          date: new Date().getTime(),
-          content: "很不错",
-          headerImg: "https://vaegin.top/img/qingzi.jpeg",
-          // children: [
-          //   {
-          //     name: "晓风残月",
-          //     date: new Date().getTime(),
-          //     content: "很不错",
-          //     headerImg: "https://vaegin.top/img/qingzi.jpeg",
-          //   },
-          //   {
-          //     name: "晓风残月",
-          //     date: new Date().getTime(),
-          //     content: "很不错",
-          //     headerImg: "https://vaegin.top/img/qingzi.jpeg",
-          //   },
-          // ],
-        },
-        {
-          name: "晓风残月22",
-          date: new Date().getTime(),
-          content: "很不错22",
-          headerImg: "https://vaegin.top/img/qingzi.jpeg",
-          children: [
-            // {
-            //   name: "晓风残月",
-            //   date: new Date().getTime(),
-            //   content: "很不错",
-            //   headerImg: "https://vaegin.top/img/qingzi.jpeg",
-            // },
-          ],
-        },
-      ],
+      comment: [],
     };
   },
   created() {
@@ -228,6 +193,7 @@ $asideBanner: 200px;
       width: 40px;
       height: 40px;
       margin-right: 12px;
+      object-fit: cover;
     }
     .message {
       flex: 1;

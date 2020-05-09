@@ -3,13 +3,7 @@
     <div class="comment-title">评论</div>
     <div class="comment-form flex">
       <div class="acter-box flex align-start">
-        <div
-          class="form-avter"
-          :style="{
-            backgroundImage: `url(${userInfo.headerImg})`,
-            backgroundSize: 'cover',
-          }"
-        ></div>
+        <img class="form-avter" :src="userInfo.headerImg" />
       </div>
       <commentReply @click="reply"></commentReply>
     </div>
@@ -74,6 +68,7 @@ export default {
         height: 32px;
         border-radius: 50%;
         margin-right: 12px;
+        object-fit: cover;
       }
     }
   }

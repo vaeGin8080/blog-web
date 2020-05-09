@@ -2,17 +2,11 @@
   <div class="list">
     <div class="item flex" v-for="(item, index) in List" :key="index">
       <div class="user-avter">
-        <div
-          class="avter"
-          :style="{
-            backgroundImage: `url(${item.user && item.user.headerImg})`,
-            backgroundSize: 'cover',
-          }"
-        ></div>
+        <img class="avter" :src="item.user && item.user.headerImg" />
       </div>
 
       <div class="comment">
-        <div class="meta">{{ item.user && item.user.userName }}</div>
+        <div class="meta">{{ item.user && item.user.user_name }}</div>
         <div class="content">{{ item.comment }}</div>
         <div class="reply">
           {{ item.create_time | parseTime("{y}-{m}-{d} {h}:{i}") }}
@@ -54,6 +48,7 @@ export default {
         width: 32px;
         height: 32px;
         border-radius: 50%;
+        object-fit: cover;
       }
     }
     .comment {
@@ -62,11 +57,15 @@ export default {
 
       .meta {
         font-size: 14px;
+        color: #333333;
       }
       .content {
         color: #505050;
         font-size: 14px;
         margin-top: 6px;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        word-break: break-all;
       }
       .reply {
         margin: 12px 0;

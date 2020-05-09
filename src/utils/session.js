@@ -5,7 +5,7 @@ export const getSession = (name) => {
   return JSON.parse(window.sessionStorage.getItem(name));
 };
 export const removeSession = (name) => {
-  window.sessionStorage.removeItemv(name, params);
+  window.sessionStorage.removeItem(name);
 };
 export const removeAll = () => {
   window.sessionStorage.clear();

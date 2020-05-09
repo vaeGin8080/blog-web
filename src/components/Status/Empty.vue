@@ -1,7 +1,9 @@
 <template>
-  <div class="empty flex-ali flex-direction">
-    <img src="@/assets/img/ku.gif" />
-    <p>暂时没有数据啦！</p>
+  <div class="empty">
+    <div class="flex-ali flex-direction">
+      <img src="@/assets/img/ku.gif" />
+      <p>暂时没有数据啦！</p>
+    </div>
   </div>
 </template>
 
@@ -13,7 +15,6 @@ export default {
 
 <style lang="scss" scoped>
 .empty {
-  padding: 40px;
   img {
     max-width: 200px;
   }

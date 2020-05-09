@@ -1,5 +1,9 @@
 <template>
-  <div class="home">
+  <div
+    class="home"
+    v-infinite-scroll="init"
+    infinite-scroll-disabled="disabled"
+  >
     <Nav @tab="tab"></Nav>
     <div class="flex">
       <ul class="home-content bg-white">
@@ -14,7 +18,7 @@
           />
         </li>
 
-        <div v-else class="flex-sub">
+        <div class="flex-sub">
           <sLink
             v-for="(item, index) in list"
             :path="`/detail?id=${item.blog_id}`"
@@ -22,8 +26,8 @@
           >
             <Item :item="item" @handleLove="handleLove"></Item>
           </sLink>
+          <Status :cg="status"></Status>
         </div>
-        <Empty v-if="!loading && list.length === 0"></Empty>
       </ul>
       <Aside :bannerList="bannerList"></Aside>
     </div>
@@ -36,11 +40,11 @@ import { getList } from "@/api/home";
 import Nav from "@/components/Nav";
 import sLink from "@/components/Link";
 import Aside from "@/components/Aside";
-import Empty from "@/components/Empty";
+import Status from "@/components/Status";
 import Item from "./item";
 export default {
   name: "Home",
-  components: { Nav, sLink, Item, Aside, Empty },
+  components: { Nav, sLink, Item, Aside, Status },
   data() {
     return {
       loading: false,
@@ -50,23 +54,36 @@ export default {
         "https://vaegin.top/img/qingzi.jpeg",
       ],
       list: [],
+      status: "",
     };
   },
   created() {
     this.init();
   },
+  computed: {
+    noMore() {
+      return this.list.length >= 20;
+    },
+    disabled() {
+      return this.loading || this.noMore;
+    },
+  },
   methods: {
     init(tag) {
       this.loading = true;
+      this.status = "loading";
       let obj = {};
       if (tag) {
         obj = {
           tag,
         };
+        this.list = [];
       }
       getList(obj).then((res) => {
-        this.list = res.data;
+        this.list = [...this.list, ...res.data];
         this.loading = false;
+        if (this.list.length == 0) this.status = "";
+        if (this.noMore) this.status = "";
       });
     },
     tab(tag) {

@@ -14,7 +14,7 @@ console.log(process.env.VUE_APP_BASIC_API);
 service.interceptors.request.use(
   (config) => {
     // do something before request is sent
-    let uid = store.getters.uid;
+    let uid = store.getters.userInfo && store.getters.userInfo.user_id;
     config.headers = {
       "X-Agent": "Juejin/Web",
       uid: uid,

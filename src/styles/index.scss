@@ -21,5 +21,8 @@ $blue: blue;
 .xs-hide {
   display: flex;
 }
+.xs-show {
+  display: none;
+}
 
 @import "./media.scss";
