@@ -1,0 +1,28 @@
+<template>
+  <div class="home">
+    <div class="flex">
+      <ul class="home-content bg-white">
+        <slot></slot>
+      </ul>
+      <slot name="aside"></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="scss" scoped>
+.home {
+  background: #f4f5f5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .home-content {
+    max-width: 100%;
+    min-height: 100px;
+    flex: 1;
+    padding: 0 20px;
+  }
+}
+</style>

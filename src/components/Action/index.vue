@@ -4,7 +4,9 @@
       <span v-if="item.likeCount">{{ item.likeCount }}</span>
     </div>
     <div class="btn comment">
-      <span v-if="item.commentCount">{{ item.commentCount }}</span>
+      <a :href="href">
+        <span v-if="item.commentCount">{{ item.commentCount }}</span>
+      </a>
     </div>
     <div class="btn collect"></div>
   </div>
@@ -20,6 +22,7 @@ export default {
         return {};
       },
     },
+    href: String,
   },
   data() {
     return {};
@@ -45,7 +48,13 @@ export default {
     border-radius: 50%;
     margin-bottom: 12px;
     position: relative;
-    & > span {
+    cursor: pointer;
+    a {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+    }
+    span {
       position: absolute;
       top: 0;
       left: 75%;

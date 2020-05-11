@@ -1,32 +1,38 @@
 <template>
-  <div class="home">
-    <div class="flex">
-      <Action :item="blogDetail" @love="love"></Action>
-      <ul class="home-content bg-white">
-        <skeleton
-          type="listcom"
-          active
-          v-if="loading"
-          :options="{
-            row: 3,
-            lineHight: 20,
-          }"
-        />
-        <div v-else>
-          <div class="blog-head flex-center justify-between">
-            <img :src="blogAuthor && blogAuthor.headerImg" />
-            <div class="message">
-              <a href="">{{ blogAuthor.user_name }}</a>
-              <p>
-                {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
-              </p>
-            </div>
-            <span class="follow flex-ali">关注</span>
+  <Wrap>
+    <template v-slot:default>
+      <Action :item="blogDetail" @love="love" :href="'#comment'"></Action>
+      <skeleton
+        type="listcom"
+        active
+        v-if="loading"
+        :options="{
+          row: 3,
+          lineHight: 20,
+        }"
+      />
+      <div v-else>
+        <div class="blog-head flex-center justify-between">
+          <img :src="blogAuthor && blogAuthor.headerImg" />
+          <div class="message">
+            <a href="">{{ blogAuthor.user_name }}</a>
+            <p>
+              {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
+            </p>
           </div>
-          <div class="mark-wrap" v-html="value"></div>
-          <Comment :comment="comment" @reply="reply"></Comment>
+          <span class="follow flex-ali">关注</span>
         </div>
-        <!-- <mavon-editor
+        <div class="mark-wrap" v-html="value"></div>
+        <Comment id="comment" :comment="comment" @reply="reply"></Comment>
+      </div>
+    </template>
+
+    <template v-slot:aside>
+      <Aside :bannerList="bannerList"></Aside>
+    </template>
+  </Wrap>
+</template>
+<!-- <mavon-editor
           v-model="value"
           :defaultOpen="'edit'"
           :editable="false"
@@ -34,12 +40,6 @@
           :toolbarsFlag="false"
           @change="change"
         />-->
-      </ul>
-      <!-- <Aside :bannerList="bannerList"></Aside> -->
-    </div>
-  </div>
-</template>
-
 <script>
 /* eslint-disable */
 import {
@@ -52,6 +52,7 @@ import {
 } from "@/api/home";
 import { getUserInfo } from "@/api/user";
 import { parseTime } from "@/utils/utils";
+import Wrap from "@/components/Wrap";
 import Link from "@/components/Link";
 import Aside from "@/components/Aside";
 import Action from "@/components/Action";
@@ -61,7 +62,7 @@ import hljs from "highlight.js";
 
 export default {
   name: "Home",
-  components: { Link, Aside, Action, Comment },
+  components: { Link, Aside, Action, Comment, Wrap },
   data() {
     return {
       parseTime,
