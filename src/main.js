@@ -8,15 +8,20 @@ import "./styles/element-variables.scss";
 import "@/styles/index.scss"; // global css
 
 import mavonEditor from "mavon-editor";
-import skeleton from "vue-skeleton-component";
 import "mavon-editor/dist/css/index.css";
+
+import skeleton from "vue-skeleton-component";
 
 import * as filters from "./filters"; // global filters
 // register global utility filters
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);
 });
-
+// 全局注册组件
+import components from "./utils/components";
+Object.keys(components).forEach((key) => {
+  Vue.component(key, components[key]);
+});
 Vue.use(skeleton);
 Vue.use(mavonEditor);
 Vue.use(Element);

@@ -29,6 +29,10 @@ export default {
   },
   methods: {
     love() {
+      if (!this.$store.getters.isLogin) {
+        this.$store.commit("handleTime");
+        return false;
+      }
       this.$emit("love", this.item.likeCount);
     },
   },

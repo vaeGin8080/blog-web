@@ -33,7 +33,8 @@
                   <img class="header-img" :src="userInfo.headerImg" />
                 </div>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="a">退出登录</el-dropdown-item>
+                  <el-dropdown-item command="a">我的主页</el-dropdown-item>
+                  <el-dropdown-item command="b">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </li>
@@ -63,7 +64,7 @@ export default {
   components: { Dialog, Login, Register },
   data() {
     return {
-      acitve: 1,
+      acitve: 0,
       show: false,
       type: 0,
       navList: [
@@ -71,15 +72,23 @@ export default {
           label: "首页",
           path: "/home",
         },
-        {
-          label: "文章",
-          path: "/home",
-        },
+        // {
+        //   label: "文章",
+        //   path: "/home",
+        // },
       ],
     };
   },
   computed: {
-    ...mapGetters(["userInfo"]),
+    ...mapGetters(["userInfo", "isLogin", "timeStamp"]),
+  },
+  watch: {
+    timeStamp(news, olds) {
+      console.log(this.isLogin);
+      if (!this.isLogin) {
+        this.show = true;
+      }
+    },
   },
   methods: {
     tabAct(index) {
@@ -94,6 +103,15 @@ export default {
     },
     handleCommand(command) {
       if (command === "a") {
+        this.$router.push({
+          path: "/user/index",
+          name: "User",
+          query: {
+            id: this.userInfo.user_id,
+          },
+        });
+      }
+      if (command === "b") {
         this.$store.commit("removeLogin");
       }
     },

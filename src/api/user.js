@@ -7,3 +7,19 @@ export function getUserInfo(data) {
     data,
   });
 }
+
+export function getUserUpdate(data) {
+  return request({
+    url: "/userUpdate",
+    method: "post",
+    data,
+  });
+}
+
+export function getUserUpdatePass(data) {
+  return request({
+    url: "/userUpdatePass",
+    method: "post",
+    data,
+  });
+}

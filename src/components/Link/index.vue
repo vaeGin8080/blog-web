@@ -4,7 +4,8 @@
     :tag="tag"
     v-slot="{ href, route, navigate, isActive }"
   >
-    <a target="_blank" :active="isActive" :href="href">
+    <!-- target="_blank" -->
+    <a :active="isActive" :href="href">
       <slot></slot>
     </a>
   </router-link>

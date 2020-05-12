@@ -1,8 +1,8 @@
 <template>
   <div v-infinite-scroll="init" :infinite-scroll-disabled="disabled">
-    <Wrap>
-      <Nav @tab="tab"></Nav>
-      <li v-if="loading">
+    <Wrap :hasNav="true">
+      <Nav @tab="tab" :navList="navList"></Nav>
+      <!-- <li v-if="loading">
         <skeleton
           type="listcom"
           active
@@ -11,7 +11,7 @@
             lineHight: 20,
           }"
         />
-      </li>
+      </li> -->
       <div class="flex-sub">
         <sLink
           v-for="(item, index) in list"
@@ -32,18 +32,34 @@
 <script>
 // eslint-disable-line
 import { getList } from "@/api/home";
-import Wrap from "@/components/Wrap";
-import Nav from "@/components/Nav";
 import sLink from "@/components/Link";
 import Aside from "@/components/Aside";
 import Status from "@/components/Status";
 import Item from "./item";
 export default {
   name: "Home",
-  components: { Wrap, Nav, sLink, Item, Aside, Status },
+  components: { sLink, Item, Aside, Status },
   data() {
     return {
       loading: false,
+      navList: [
+        {
+          label: "推荐",
+          path: "/home",
+        },
+        {
+          label: "前端",
+          path: "/home",
+        },
+        {
+          label: "后端",
+          path: "/home",
+        },
+        {
+          label: "其他",
+          path: "/home",
+        },
+      ],
       bannerList: [
         "https://vaegin.top/img/bg.jpg",
         "https://vaegin.top/img/anxi.jpg",
@@ -93,16 +109,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-$box: 60px;
-
-.home {
-  background: #f4f5f5;
-  margin-top: 60px;
-  max-width: 100%;
-  .home-content {
-    max-width: 100%;
-    flex: 1;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

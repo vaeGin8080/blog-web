@@ -3,7 +3,7 @@
     <div class="comment-title">评论</div>
     <div class="comment-form flex">
       <div class="acter-box flex align-start">
-        <img class="form-avter" :src="userInfo.headerImg" />
+        <img class="form-avter" :src="avter" />
       </div>
       <commentReply @click="reply"></commentReply>
     </div>
@@ -34,9 +34,14 @@ export default {
   },
   computed: {
     ...mapGetters(["userInfo"]),
+    avter() {
+      return (this.userInfo && this.userInfo.headerImg) || this.defaultImg;
+    },
   },
   data() {
-    return {};
+    return {
+      defaultImg: require("@/assets/img/default-avatar.svg"),
+    };
   },
   methods: {
     reply(value) {

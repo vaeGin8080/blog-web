@@ -28,6 +28,10 @@ export default {
   },
   methods: {
     handleFocus() {
+      if (!this.$store.getters.isLogin) {
+        this.$store.commit("handleTime");
+        return false;
+      }
       this.fouce = true;
     },
     handleBlur() {

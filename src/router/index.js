@@ -26,15 +26,36 @@ const constantRoutes = [
   },
   {
     path: "/detail",
-    name: "Detail",
-    redirect: "/detail",
+    redirect: "/detail/index",
     component: Layout,
     children: [
       {
-        path: "",
-        name: "detail",
+        path: "index",
+        name: "Detail",
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/Detail/index.vue"),
+      },
+    ],
+  },
+  {
+    path: "/user",
+    name: "user",
+    redirect: "/user/index",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        name: "User",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/User/index.vue"),
+      },
+      {
+        path: "setting",
+        name: "Setting",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "../views/User/Setting/index.vue"
+          ),
       },
     ],
   },
@@ -42,14 +63,13 @@ const constantRoutes = [
 
 const createRouter = () =>
   new VueRouter({
-    mode: "history", // require service support
+    mode: "hash", // require service support
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRoutes,
   });
 
 const router = createRouter();
 
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter();
   router.matcher = newRouter.matcher; // reset router

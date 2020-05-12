@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div :class="[hasNav ? 'has-nav' : '', 'home']">
     <div class="flex">
       <ul class="home-content bg-white">
         <slot></slot>
@@ -10,7 +10,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    hasNav: {
+      type: Boolean,
+      default: false,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -24,5 +31,8 @@ export default {};
     flex: 1;
     padding: 0 20px;
   }
+}
+.has-nav {
+  margin-top: 65px;
 }
 </style>

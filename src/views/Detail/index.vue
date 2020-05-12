@@ -22,7 +22,17 @@
           </div>
           <span class="follow flex-ali">关注</span>
         </div>
-        <div class="mark-wrap" v-html="value"></div>
+        <mavon-editor
+          v-model="value"
+          :editable="false"
+          :ishljs="true"
+          :toolbarsFlag="false"
+          @change="change"
+          :subfield="false"
+          :boxShadow="false"
+          :codeStyle="'github'"
+          defaultOpen="preview"
+        />
         <Comment id="comment" :comment="comment" @reply="reply"></Comment>
       </div>
     </template>
@@ -32,14 +42,7 @@
     </template>
   </Wrap>
 </template>
-<!-- <mavon-editor
-          v-model="value"
-          :defaultOpen="'edit'"
-          :editable="false"
-          :ishljs="true"
-          :toolbarsFlag="false"
-          @change="change"
-        />-->
+
 <script>
 /* eslint-disable */
 import {
@@ -94,13 +97,13 @@ export default {
         if (res.status == 1) {
           this.value = res.data.blog_content;
           this.blogDetail = res.data;
+          // 设置高亮
           marked.setOptions({
             highlight: function(code) {
               return hljs.highlightAuto(code).value;
             },
           });
           this.value = marked(this.value);
-
           this.getInfo(this.blogDetail.create_id);
           this.requireComment();
         }
@@ -173,8 +176,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/github-gist.css";
-
 $box: 60px;
 $aside: 240px;
 $asideBanner: 200px;
@@ -189,7 +190,7 @@ $asideBanner: 200px;
     padding: 0 20px;
   }
   .blog-head {
-    padding: 24px 20px 0 0;
+    padding: 24px 20px 20px 0;
     & > img {
       width: 40px;
       height: 40px;

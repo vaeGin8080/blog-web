@@ -91,7 +91,7 @@ export default {
       };
       getLogin(obj).then((res) => {
         if (res.status === 1) {
-          this.$store.commit("handleUserInfo", res.data);
+          this.$store.dispatch("getUserInfo", res.data);
           this.$notify.success({
             title: "成功",
             message: res.msg,

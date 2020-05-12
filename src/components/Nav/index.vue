@@ -17,27 +17,10 @@
 <script>
 export default {
   name: "Nav",
+  props: ["navList", "type"],
   data() {
     return {
       acitve: 0,
-      navList: [
-        {
-          label: "推荐",
-          path: "/home",
-        },
-        {
-          label: "前端",
-          path: "/home",
-        },
-        {
-          label: "后端",
-          path: "/home",
-        },
-        {
-          label: "其他",
-          path: "/home",
-        },
-      ],
     };
   },
   methods: {
@@ -46,6 +29,7 @@ export default {
       this.acitve = index;
       let label = item.label;
       if (index == 0) label = "";
+      if (this.type == "index") label = index;
       this.$emit("tab", label);
     },
   },
