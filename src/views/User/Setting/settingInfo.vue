@@ -29,6 +29,7 @@
 <script>
 import UploadImg from "@/components/UploadImg";
 import { mapGetters } from "vuex";
+import notify from "@/utils/notify";
 
 export default {
   components: { UploadImg },
@@ -93,11 +94,7 @@ export default {
     submit() {
       let form = this.form;
       if (form.user_name == "") {
-        this.$notify.error({
-          title: "错误",
-          message: "用户名不能为空",
-          duration: 1000,
-        });
+        notify.error("用户名不能为空");
         return;
       }
       let query = {

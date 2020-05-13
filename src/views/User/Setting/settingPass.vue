@@ -22,6 +22,7 @@
 
 <script>
 import { getUserUpdatePass } from "@/api/user";
+import notify from "@/utils/notify";
 
 export default {
   props: {
@@ -66,36 +67,20 @@ export default {
       let formList = this.formList;
       for (let i = 0; i < formList.length; i++) {
         if (formList[i].rule.require && !form[formList[i].key]) {
-          this.$notify.error({
-            title: "错误",
-            message: formList[i].rule.message,
-            duration: 1500,
-          });
+          notify.error(formList[i].rule.message);
           return;
         }
       }
       if (form.newPassword !== form.repeatPassword) {
-        this.$notify.error({
-          title: "错误",
-          message: "两次输入的密码不一致",
-          duration: 1500,
-        });
+        notify.error("两次输入的密码不一致");
         return;
       }
       getUserUpdatePass(form).then((res) => {
         if (res.status == 1) {
-          this.$notify.success({
-            title: "成功",
-            message: "更新成功",
-            duration: 1500,
-          });
+          notify.success("更新成功");
           this.form = {};
         } else {
-          this.$notify.error({
-            title: "错误",
-            message: res.msg,
-            duration: 1500,
-          });
+          notify.error(res.msg);
         }
       });
     },

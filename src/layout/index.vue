@@ -1,5 +1,5 @@
 <template>
-  <div class="con">
+  <div class="wrap">
     <Header></Header>
     <div class="container">
       <!-- out-in：当前元素先进行过渡，完成之后新元素过渡进入。 -->
@@ -24,13 +24,14 @@ export default {
       return this.$route.path;
     },
   },
+  mounted() {
+    this.$store.commit("setTheme");
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.con {
-  // background: url(https://vaegin.top/img/bg.jpg) no-repeat center;
-  // background-size: cover;
+.wrap {
   background-attachment: fixed;
   height: 100%;
   overflow: auto;

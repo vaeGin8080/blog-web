@@ -14,6 +14,9 @@ const constantRoutes = [
       {
         path: "home",
         name: "index",
+        meta: {
+          title: "首页",
+        },
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/Home/index.vue"),
       },
@@ -32,6 +35,9 @@ const constantRoutes = [
       {
         path: "index",
         name: "Detail",
+        meta: {
+          title: "博客详情",
+        },
         component: () =>
           import(/* webpackChunkName: "about" */ "../views/Detail/index.vue"),
       },

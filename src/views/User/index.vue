@@ -6,7 +6,7 @@
         <div class="info-box">
           <h1>{{ userInfo.user_name }}</h1>
           <div class="job">
-            <span>{{ userInfo.job }}前端工程师</span>
+            <span>{{ userInfo.job }}</span>
           </div>
           <div class="desc">
             <span>{{ descInfo }}</span>
@@ -91,7 +91,7 @@ export default {
     }
     .desc {
       margin-top: 5px;
-      color: #4a68ad;
+      @include font_color();
       cursor: pointer;
       font-size: 14px;
       & > span {
@@ -108,8 +108,8 @@ export default {
       height: 34px;
       border-radius: 4px;
       padding: 5px 10px;
-      color: #3780f7;
-      border: 1px solid #3780f7;
+      @include font_color();
+      border: 1px solid;
       cursor: pointer;
     }
   }

@@ -4,6 +4,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {};
+  },
+  mounted() {
+    // 默认主题颜色
+    this.$store.commit("setTheme");
+  },
+};
+</script>
+
 <style lang="scss">
 #app {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, Helvetica Neue,

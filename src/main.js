@@ -5,6 +5,8 @@ import store from "./store";
 import Element from "element-ui";
 import "./styles/element-variables.scss";
 
+import "./permission";
+
 import "@/styles/index.scss"; // global css
 
 import mavonEditor from "mavon-editor";

@@ -61,4 +61,11 @@ module.exports = {
       },
     },
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "~@/styles/mixin.scss";`,
+      },
+    },
+  },
 };

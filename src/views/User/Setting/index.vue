@@ -22,6 +22,7 @@
 import { getUserUpdate } from "@/api/user";
 import settingInfo from "./settingInfo";
 import settingPass from "./settingPass";
+import notify from "@/utils/notify";
 export default {
   name: "Setting",
   components: { settingInfo, settingPass },
@@ -70,18 +71,10 @@ export default {
           this.$store
             .dispatch("getUserInfo")
             .then((res) => {
-              this.$notify.success({
-                title: "成功",
-                message: "更新成功",
-                duration: 1000,
-              });
+              notify.success("更新成功");
             })
             .catch((rej) => {
-              this.$notify.error({
-                title: "失败",
-                message: "更新失败",
-                duration: 1000,
-              });
+              notify.error("更新失败");
             });
         }
       });

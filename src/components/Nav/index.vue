@@ -57,7 +57,7 @@ export default {
       cursor: pointer;
     }
     .active {
-      color: #007fff;
+      @include font_color();
     }
   }
 }

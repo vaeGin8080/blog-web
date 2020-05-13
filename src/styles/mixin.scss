@@ -1,3 +1,50 @@
+@import "./variables.scss";
+
+@mixin font_color() {
+  /*通过该函数设置字体颜色，后期方便统一管理；*/
+  color: $fontColor-theme;
+  [data-theme="theme1"] & {
+    color: $fontColor-theme1;
+  }
+  [data-theme="theme2"] & {
+    color: $fontColor-theme2;
+  }
+  [data-theme="theme3"] & {
+    color: $fontColor-theme3;
+  }
+  [data-theme="theme4"] & {
+    color: $fontColor-theme4;
+  }
+  [data-theme="theme5"] & {
+    color: $fontColor-theme5;
+  }
+  [data-theme="theme6"] & {
+    color: $fontColor-theme6;
+  }
+}
+@mixin bg_color() {
+  /*通过该函数设置主题颜色，后期方便统一管理；*/
+  background-color: $bgColor-theme;
+  [data-theme="theme1"] & {
+    background-color: $bgColor-theme1;
+  }
+  [data-theme="theme2"] & {
+    background-color: $bgColor-theme2;
+  }
+  [data-theme="theme3"] & {
+    background-color: $bgColor-theme3;
+  }
+  [data-theme="theme4"] & {
+    background-color: $bgColor-theme4;
+  }
+  [data-theme="theme5"] & {
+    background-color: $bgColor-theme5;
+  }
+  [data-theme="theme6"] & {
+    background-color: $bgColor-theme6;
+  }
+}
+
 @mixin clearfix {
   &:after {
     content: "";
@@ -44,21 +91,15 @@
     border-bottom: $color-border-style;
     border-left: $transparent-border-style;
     border-right: $transparent-border-style;
-  }
-
-  @else if $direction==right {
+  } @else if $direction==right {
     border-left: $color-border-style;
     border-top: $transparent-border-style;
     border-bottom: $transparent-border-style;
-  }
-
-  @else if $direction==down {
+  } @else if $direction==down {
     border-top: $color-border-style;
     border-left: $transparent-border-style;
     border-right: $transparent-border-style;
-  }
-
-  @else if $direction==left {
+  } @else if $direction==left {
     border-right: $color-border-style;
     border-top: $transparent-border-style;
     border-bottom: $transparent-border-style;

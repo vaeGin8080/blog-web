@@ -40,7 +40,7 @@
 
 <script>
 import { getLogin } from "@/api/login";
-
+import notify from "@/utils/notify";
 export default {
   name: "Login",
   data() {
@@ -73,17 +73,11 @@ export default {
     },
     submit() {
       if (!this.form.userName) {
-        this.$notify.error({
-          title: "错误",
-          message: "请输入用户名",
-          duration: 1000,
-        });
+        notify.error("请输入用户名");
+        return;
       } else if (!this.form.passWord) {
-        this.$notify.error({
-          title: "错误",
-          message: "请输入密码",
-          duration: 1000,
-        });
+        notify.error("请输入密码");
+        return;
       }
       let obj = {
         user_name: this.form.userName,
@@ -92,18 +86,10 @@ export default {
       getLogin(obj).then((res) => {
         if (res.status === 1) {
           this.$store.dispatch("getUserInfo", res.data);
-          this.$notify.success({
-            title: "成功",
-            message: res.msg,
-            duration: 1000,
-          });
+          notify.success(res.msg);
           this.$emit("close");
         } else {
-          this.$notify.error({
-            title: "错误",
-            message: res.msg,
-            duration: 1000,
-          });
+          notify.error(res.msg);
         }
       });
     },
@@ -141,7 +127,7 @@ export default {
     color: #767676;
     margin-top: 12px;
     & > span {
-      color: #007fff;
+      @include font_color();
       cursor: pointer;
     }
   }

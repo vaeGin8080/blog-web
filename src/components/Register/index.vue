@@ -46,6 +46,7 @@
 
 <script>
 import { getRegister } from "@/api/login";
+import notify from "@/utils/notify";
 
 export default {
   name: "Register",
@@ -80,25 +81,13 @@ export default {
     },
     submit() {
       if (!this.form.userName) {
-        this.$notify.error({
-          title: "错误",
-          message: "请输入用户名",
-          duration: 1000,
-        });
+        notify.error("请输入用户名");
         return;
       } else if (!this.form.passWord) {
-        this.$notify.error({
-          title: "错误",
-          message: "请输入密码",
-          duration: 1000,
-        });
+        notify.error("请输入密码");
         return;
       } else if (this.form.passWord !== this.form.veify) {
-        this.$notify.error({
-          title: "错误",
-          message: "密码前后不一致",
-          duration: 1000,
-        });
+        notify.error("密码前后不一致");
         return;
       }
       let obj = {
@@ -108,17 +97,9 @@ export default {
       getRegister(obj).then((res) => {
         if (res.status === 1) {
           this.$emit("onChange", 0);
-          this.$notify.success({
-            title: "成功",
-            message: res.msg,
-            duration: 1000,
-          });
+          notify.success(res.msg);
         } else {
-          this.$notify.error({
-            title: "错误",
-            message: res.msg,
-            duration: 1000,
-          });
+          notify.error(res.msg);
         }
       });
     },
@@ -156,7 +137,7 @@ export default {
     color: #767676;
     margin-top: 12px;
     & > span {
-      color: #007fff;
+      @include font_color();
       cursor: pointer;
     }
   }

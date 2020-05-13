@@ -34,7 +34,8 @@
                 </div>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="a">我的主页</el-dropdown-item>
-                  <el-dropdown-item command="b">退出登录</el-dropdown-item>
+                  <el-dropdown-item command="b">主题切换</el-dropdown-item>
+                  <el-dropdown-item command="c">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </li>
@@ -47,9 +48,23 @@
         </nav>
       </div>
     </header>
+    <theme-picker
+      v-show="false"
+      @change="themeChange"
+      @setTheme="setTheme"
+      :defaultTh="defaultTh"
+    />
+
     <Dialog v-if="show" :show.sync="show" :title="type == 0 ? '登录' : '注册'">
       <Login v-if="type == 0" @onChange="showDialog" @close="close"></Login>
       <Register v-else @onChange="showDialog" @close="close"></Register>
+    </Dialog>
+    <Dialog :show.sync="showTheme" title="主题切换">
+      <theme-picker
+        @change="themeChange"
+        @setTheme="setTheme"
+        :defaultTh="defaultTh"
+      />
     </Dialog>
   </div>
 </template>
@@ -58,14 +73,17 @@
 import Dialog from "@/components/Dialog";
 import Login from "@/components/Login";
 import Register from "@/components/Register";
+import ThemePicker from "@/components/ThemePicker";
 import { mapGetters } from "vuex";
+import { getSession } from "@/utils/session";
 export default {
   name: "Header",
-  components: { Dialog, Login, Register },
+  components: { Dialog, Login, Register, ThemePicker },
   data() {
     return {
       acitve: 0,
       show: false,
+      showTheme: false,
       type: 0,
       navList: [
         {
@@ -81,6 +99,9 @@ export default {
   },
   computed: {
     ...mapGetters(["userInfo", "isLogin", "timeStamp"]),
+    defaultTh() {
+      return getSession("theme");
+    },
   },
   watch: {
     timeStamp(news, olds) {
@@ -90,6 +111,7 @@ export default {
       }
     },
   },
+  mounted() {},
   methods: {
     tabAct(index) {
       this.acitve = index;
@@ -112,8 +134,23 @@ export default {
         });
       }
       if (command === "b") {
+        this.showTheme = true;
+      }
+      if (command === "c") {
+        this.$router.push({
+          path: "/",
+        });
         this.$store.commit("removeLogin");
       }
+    },
+    themeChange(val) {
+      this.$store.dispatch("changeSetting", {
+        key: "theme",
+        value: val,
+      });
+    },
+    setTheme(index) {
+      this.$store.commit("setTheme", index);
     },
   },
 };
@@ -131,7 +168,7 @@ $height: 60px;
       font-size: 16px;
     }
     .active {
-      color: #007fff;
+      @include font_color();
     }
   }
   .logo {
@@ -152,6 +189,9 @@ $height: 60px;
       color: #71777c;
       font-size: 24px;
       margin-right: 20px;
+      &:hover {
+        @include font_color();
+      }
     }
     .header-img {
       width: 30px;
@@ -161,7 +201,7 @@ $height: 60px;
     }
   }
   .head-form {
-    color: #007fff;
+    @include font_color();
     font-size: 16px;
     & > i {
       margin: 0 5px;

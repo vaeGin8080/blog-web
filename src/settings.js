@@ -1,5 +1,5 @@
 module.exports = {
-  title: "晓风残月博客",
+  title: "晓风残月",
 
   /**
    * @type {boolean} true | false
