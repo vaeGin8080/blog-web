@@ -23,6 +23,7 @@
 <script>
 import { getUserUpdatePass } from "@/api/user";
 import notify from "@/utils/notify";
+import md5 from "js-md5";
 
 export default {
   props: {
@@ -75,7 +76,11 @@ export default {
         notify.error("两次输入的密码不一致");
         return;
       }
-      getUserUpdatePass(form).then((res) => {
+      let query = {
+        oldPassword: md5(this.form.oldPassword),
+        newPassword: md5(this.form.newPassword),
+      };
+      getUserUpdatePass(query).then((res) => {
         if (res.status == 1) {
           notify.success("更新成功");
           this.form = {};

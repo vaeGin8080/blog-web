@@ -47,6 +47,7 @@
 <script>
 import { getRegister } from "@/api/login";
 import notify from "@/utils/notify";
+import md5 from "js-md5";
 
 export default {
   name: "Register",
@@ -92,7 +93,7 @@ export default {
       }
       let obj = {
         user_name: this.form.userName,
-        user_password: this.form.passWord,
+        user_password: md5(this.form.passWord),
       };
       getRegister(obj).then((res) => {
         if (res.status === 1) {

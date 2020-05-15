@@ -1,46 +1,38 @@
 <template>
-  <Wrap>
-    <template v-slot:default>
-      <Action :item="blogDetail" @love="love" :href="'#comment'"></Action>
-      <skeleton
-        type="listcom"
-        active
-        v-if="loading"
-        :options="{
-          row: 3,
-          lineHight: 20,
-        }"
-      />
-      <div v-else>
-        <div class="blog-head flex-center justify-between">
-          <img :src="blogAuthor && blogAuthor.headerImg" />
-          <div class="message">
-            <a href="">{{ blogAuthor.user_name }}</a>
-            <p>
-              {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
-            </p>
-          </div>
-          <span class="follow flex-ali">关注</span>
-        </div>
-        <mavon-editor
-          v-model="value"
-          :editable="false"
-          :ishljs="true"
-          :toolbarsFlag="false"
-          @change="change"
-          :subfield="false"
-          :boxShadow="false"
-          :codeStyle="'github'"
-          defaultOpen="preview"
+  <div>
+    <Wrap>
+      <template v-slot:default>
+        <Action :item="blogDetail" @love="love" :href="'#comment'"></Action>
+        <skeleton
+          type="listcom"
+          active
+          v-if="loading"
+          :options="{
+            row: 3,
+            lineHight: 20,
+          }"
         />
-        <Comment id="comment" :comment="comment" @reply="reply"></Comment>
-      </div>
-    </template>
+        <div v-else>
+          <div class="blog-head flex-center justify-between">
+            <img :src="blogAuthor && blogAuthor.headerImg" />
+            <div class="message">
+              <a href="">{{ blogAuthor.user_name }}</a>
+              <p>
+                {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
+              </p>
+            </div>
+            <span class="follow flex-ali">关注</span>
+          </div>
+          <MarkDown :value="value"></MarkDown>
+          <Comment id="comment" :comment="comment" @reply="reply"></Comment>
+        </div>
+      </template>
 
-    <template v-slot:aside>
-      <Aside :bannerList="bannerList"></Aside>
-    </template>
-  </Wrap>
+      <template v-slot:aside>
+        <!-- <MarkDownMenu :list="navList"></MarkDownMenu> -->
+      </template>
+    </Wrap>
+  </div>
 </template>
 
 <script>
@@ -60,12 +52,28 @@ import Link from "@/components/Link";
 import Aside from "@/components/Aside";
 import Action from "@/components/Action";
 import Comment from "@/components/Comment";
+import MarkDown from "@/components/MarkDown";
+import MarkDownMenu from "@/components/MarkDownMenu";
+import getTitle from "@/utils/getNav";
 import marked from "marked";
 import hljs from "highlight.js";
-
+// 设置高亮
+marked.setOptions({
+  highlight: function(code) {
+    return hljs.highlightAuto(code).value;
+  },
+});
 export default {
   name: "Home",
-  components: { Link, Aside, Action, Comment, Wrap },
+  components: {
+    Link,
+    Aside,
+    Action,
+    Comment,
+    Wrap,
+    MarkDown,
+    MarkDownMenu,
+  },
   data() {
     return {
       parseTime,
@@ -80,6 +88,16 @@ export default {
       blogDetail: {},
       blogAuthor: {},
       comment: [],
+      navList: [],
+      myBackToTopStyle: {
+        right: "50px",
+        bottom: "50px",
+        width: "40px",
+        height: "40px",
+        "border-radius": "4px",
+        "line-height": "45px", // 请保持与高度一致以垂直居中 Please keep consistent with height to center vertically
+        background: "#e7eaf1", // 按钮的背景颜色 The background color of the button
+      },
     };
   },
   created() {
@@ -97,13 +115,8 @@ export default {
         if (res.status == 1) {
           this.value = res.data.blog_content;
           this.blogDetail = res.data;
-          // 设置高亮
-          marked.setOptions({
-            highlight: function(code) {
-              return hljs.highlightAuto(code).value;
-            },
-          });
           this.value = marked(this.value);
+          // this.navList = getTitle(this.value);
           this.getInfo(this.blogDetail.create_id);
           this.requireComment();
         }
@@ -114,7 +127,6 @@ export default {
     getInfo(id) {
       let obj = { id };
       getUserInfo(obj).then((res) => {
-        console.log(res);
         this.blogAuthor = res.data;
       });
     },
@@ -137,7 +149,6 @@ export default {
     },
     // 发送评论
     reply(value) {
-      console.log(value);
       let obj = {
         id: this.blogDetail.blog_id,
         comment: value,
@@ -164,7 +175,6 @@ export default {
       };
       getCommentList(obj).then((res) => {
         if (res.status === 1) {
-          console.log(res);
           this.comment = res.data;
         }
       });
@@ -215,9 +225,10 @@ $asideBanner: 200px;
       width: 55px;
       height: 26px;
       font-size: 13px;
-      border: 1px solid #6cbd45;
-      color: #6cbd45;
+      border: 1px solid;
+      @include font_color();
       background-color: #fff;
+      cursor: pointer;
     }
   }
   .mark-wrap {

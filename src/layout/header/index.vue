@@ -28,7 +28,7 @@
               v-if="userInfo && userInfo.user_id"
             >
               <i class="el-icon-message-solid"></i>
-              <el-dropdown @command="handleCommand">
+              <el-dropdown @command="handleCommand" trigger="click">
                 <div class="el-dropdown-link flex-center">
                   <img class="header-img" :src="userInfo.headerImg" />
                 </div>
@@ -166,6 +166,7 @@ $height: 60px;
       padding: 0 15px;
       color: #71777c;
       font-size: 16px;
+      font-weight: 600;
     }
     .active {
       @include font_color();

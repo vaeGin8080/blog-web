@@ -6,11 +6,15 @@
       </ul>
       <slot name="aside"></slot>
     </div>
+    <el-backtop target=".home .home-content"></el-backtop>
   </div>
 </template>
 
 <script>
+// import BackToTop from "@/components/BackToTop";
+
 export default {
+  // components: { BackToTop },
   props: {
     hasNav: {
       type: Boolean,

@@ -5,7 +5,12 @@
       <li class="item i1">
         <span>头像</span>
         <div class="flex-center">
-          <img class="header-img" :src="form.headerImg || defaultImg" />
+          <el-image
+            class="header-img"
+            fit="cover"
+            :src="userInfo.headerImg || defaultImg"
+            :preview-src-list="[userInfo.headerImg]"
+          ></el-image>
           <UploadImg @success="success"></UploadImg>
         </div>
       </li>

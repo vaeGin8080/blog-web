@@ -5,7 +5,7 @@
     v-slot="{ href, route, navigate, isActive }"
   >
     <!-- target="_blank" -->
-    <a :active="isActive" :href="href">
+    <a target="_blank" :active="isActive" :href="href">
       <slot></slot>
     </a>
   </router-link>

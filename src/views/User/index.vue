@@ -2,7 +2,12 @@
   <div class="user">
     <Wrap>
       <div class="user-header flex justify-between">
-        <img class="header-img" :src="userInfo.headerImg" />
+        <el-image
+          class="header-img"
+          fit="cover"
+          :src="userInfo.headerImg"
+          :preview-src-list="[userInfo.headerImg]"
+        ></el-image>
         <div class="info-box">
           <h1>{{ userInfo.user_name }}</h1>
           <div class="job">
@@ -79,7 +84,6 @@ export default {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    object-fit: cover;
     margin-right: 30px;
   }
   .info-box {
@@ -111,6 +115,22 @@ export default {
       @include font_color();
       border: 1px solid;
       cursor: pointer;
+    }
+  }
+}
+@media (max-width: 980px) {
+  .user-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .info-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .desc {
+        margin: 10px 0;
+      }
     }
   }
 }

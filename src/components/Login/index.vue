@@ -41,6 +41,8 @@
 <script>
 import { getLogin } from "@/api/login";
 import notify from "@/utils/notify";
+import md5 from "js-md5";
+
 export default {
   name: "Login",
   data() {
@@ -81,7 +83,7 @@ export default {
       }
       let obj = {
         user_name: this.form.userName,
-        user_password: this.form.passWord,
+        user_password: md5(this.form.passWord),
       };
       getLogin(obj).then((res) => {
         if (res.status === 1) {

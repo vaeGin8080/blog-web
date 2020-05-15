@@ -5,6 +5,7 @@ export default {
       title: "成功",
       message: title,
       duration: 1500,
+      offset: 50,
     });
   },
   error(title) {
@@ -12,6 +13,7 @@ export default {
       title: "错误",
       message: title,
       duration: 1500,
+      offset: 50,
     });
   },
 };
