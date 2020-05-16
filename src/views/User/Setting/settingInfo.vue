@@ -94,6 +94,7 @@ export default {
   },
   methods: {
     success(value) {
+      this.form.headerImg = value;
       this.$emit("success", value);
     },
     submit() {
