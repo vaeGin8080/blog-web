@@ -57,6 +57,9 @@ $box: 60px;
 .item {
   padding: 15px 20px;
   border-bottom: 1px solid rgba(178, 186, 194, 0.15);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+  }
   .info {
     color: #b2bac2;
     font-size: 12px;

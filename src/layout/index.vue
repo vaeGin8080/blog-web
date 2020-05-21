@@ -11,22 +11,23 @@
 </template>
 
 <script>
+// import Sticky from "@/components/Sticky";
 import Header from "./header";
 export default {
   components: {
     Header,
   },
   data() {
-    return {};
+    return {
+      visibleHead: false,
+    };
   },
   computed: {
     key() {
       return this.$route.path;
     },
   },
-  mounted() {
-    this.$store.commit("setTheme");
-  },
+  methods: {},
 };
 </script>
 

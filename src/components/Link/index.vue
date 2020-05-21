@@ -5,7 +5,7 @@
     v-slot="{ href, route, navigate, isActive }"
   >
     <!-- target="_blank" -->
-    <a target="_blank" :active="isActive" :href="href">
+    <a target="_blank" :active="isActive" :href="href" rel="noopener">
       <slot></slot>
     </a>
   </router-link>
@@ -22,6 +22,11 @@ export default {
     tag: {
       type: String,
       default: "li",
+    },
+  },
+  computed: {
+    target() {
+      return !this.$isMB() ? "_blank" : "";
     },
   },
 };

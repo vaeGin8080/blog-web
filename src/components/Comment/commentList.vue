@@ -6,6 +6,13 @@
       </div>
 
       <div class="comment">
+        <span
+          class="close"
+          v-show="item.showComment"
+          @click="deleteComment(item)"
+        >
+          <i class="el-icon-close"></i>
+        </span>
         <div class="meta">{{ item.user && item.user.user_name }}</div>
         <div class="content">{{ item.comment }}</div>
         <div class="reply">
@@ -33,6 +40,12 @@ export default {
       },
     },
   },
+
+  methods: {
+    deleteComment(item) {
+      this.$emit("deleteComment", item.id);
+    },
+  },
 };
 </script>
 
@@ -52,9 +65,19 @@ export default {
       }
     }
     .comment {
+      position: relative;
       flex: 1;
       margin-left: 8px;
-
+      border-bottom: 1px solid #f1f1f1;
+      .close {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        &:hover {
+          font-weight: 600;
+          @include font_color();
+        }
+      }
       .meta {
         font-size: 14px;
         color: #333333;

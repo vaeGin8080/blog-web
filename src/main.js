@@ -24,9 +24,17 @@ import components from "./utils/components";
 Object.keys(components).forEach((key) => {
   Vue.component(key, components[key]);
 });
+
+import { isMobile } from "./utils/utils";
+
 Vue.use(skeleton);
 Vue.use(mavonEditor);
-Vue.use(Element);
+Vue.prototype.$isMB = isMobile;
+// Vue.use(Element);
+Vue.use(Element, {
+  size: "medium", // set element-ui default size
+});
+
 Vue.config.productionTip = false;
 
 new Vue({

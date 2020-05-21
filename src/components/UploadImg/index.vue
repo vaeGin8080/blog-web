@@ -9,7 +9,7 @@
       action=""
     >
       <div slot="tip" class="el-upload__tip">
-        只能上传jpg/png文件
+        <span v-if="isLimit">只能上传jpg/png文件</span>
       </div>
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
@@ -20,6 +20,12 @@
 import { getToken, upload, realUpload } from "@/api/common";
 export default {
   name: "UploadImg",
+  props: {
+    isLimit: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data() {
     return {
       file: {},
@@ -29,10 +35,10 @@ export default {
     upload(req) {
       console.log(req);
 
-      const isJPG = req.file.type === "image/jpeg";
+      const isJPG = req.file.type === "image/jpeg" || "image/png";
 
       if (!isJPG) {
-        this.$message.error("上传头像图片只能是 JPG 格式!");
+        this.$message.error("上传头像图片只能是 JPG 或 PNG 格式!");
         return;
       }
 

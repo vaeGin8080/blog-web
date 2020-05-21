@@ -1,4 +1,5 @@
 import { setSession, getSession, removeSession } from "@/utils/session";
+import { isMobile } from "@/utils/utils";
 import variables from "@/styles/element-variables.scss";
 
 export default {

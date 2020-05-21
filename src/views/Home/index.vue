@@ -90,7 +90,7 @@ export default {
         this.list = [];
       }
       getList(obj).then((res) => {
-        this.list = [...this.list, ...res.data.data];
+        this.list = [...res.data.data];
         this.hasNext = res.data.page.hasNext;
         this.loading = false;
         this.page++;

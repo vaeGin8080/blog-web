@@ -53,3 +53,12 @@ export function getSendComment(data) {
     data,
   });
 }
+
+// 发送评论
+export function deleteComment(query) {
+  return request({
+    url: "/web/deleteComment",
+    method: "get",
+    params: query,
+  });
+}

@@ -3,11 +3,11 @@
     <header class="fix-header">
       <div class="container header-container flex">
         <a class="logo flex-center">
-          <img src="https://vaegin.top/img/qingzi.jpeg" />
+          <img src="https://vaegin.top/img/qingzi.jpeg" alt="晓风残月" />
         </a>
         <nav class="flex-sub">
           <ul class="h-100 flex-center justify-between">
-            <li class="xs-hide h-100">
+            <li class="h-100">
               <ul class="flex-center">
                 <li
                   class="nav-item"
@@ -20,13 +20,16 @@
                 </li>
               </ul>
             </li>
-            <li class="xs-show">
+            <!-- <li class="xs-show">
               <span class="nav-item">首页</span>
-            </li>
+            </li> -->
             <li
               class="user-info flex-center"
               v-if="userInfo && userInfo.user_id"
             >
+              <router-link to="/write">
+                <el-button class="artice" type="primary">写文章</el-button>
+              </router-link>
               <i class="el-icon-message-solid"></i>
               <el-dropdown @command="handleCommand" trigger="click">
                 <div class="el-dropdown-link flex-center">
@@ -55,11 +58,16 @@
       :defaultTh="defaultTh"
     />
 
-    <Dialog v-if="show" :show.sync="show" :title="type == 0 ? '登录' : '注册'">
+    <Dialog
+      v-el-drag-dialog
+      v-if="show"
+      :show.sync="show"
+      :title="type == 0 ? '登录' : '注册'"
+    >
       <Login v-if="type == 0" @onChange="showDialog" @close="close"></Login>
       <Register v-else @onChange="showDialog" @close="close"></Register>
     </Dialog>
-    <Dialog :show.sync="showTheme" title="主题切换">
+    <Dialog v-el-drag-dialog :show.sync="showTheme" title="主题切换">
       <theme-picker
         @change="themeChange"
         @setTheme="setTheme"
@@ -76,9 +84,11 @@ import Register from "@/components/Register";
 import ThemePicker from "@/components/ThemePicker";
 import { mapGetters } from "vuex";
 import { getSession } from "@/utils/session";
+import elDragDialog from "@/directive/el-drag-dialog"; // base on element-ui
 export default {
   name: "Header",
   components: { Dialog, Login, Register, ThemePicker },
+  directives: { elDragDialog },
   data() {
     return {
       acitve: 0,
@@ -199,6 +209,9 @@ $height: 60px;
       height: 30px;
       object-fit: cover;
       border-radius: 50%;
+    }
+    .artice {
+      margin-right: 20px;
     }
   }
   .head-form {

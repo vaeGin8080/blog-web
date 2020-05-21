@@ -1,5 +1,7 @@
 import request from "@/utils/request";
 
+// 获取用户信息
+
 export function getUserInfo(data) {
   return request({
     url: "/userInfo",
@@ -8,6 +10,8 @@ export function getUserInfo(data) {
   });
 }
 
+// 更新用户信息
+
 export function getUserUpdate(data) {
   return request({
     url: "/userUpdate",
@@ -15,6 +19,8 @@ export function getUserUpdate(data) {
     data,
   });
 }
+
+// 更新密码
 
 export function getUserUpdatePass(data) {
   return request({

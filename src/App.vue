@@ -7,12 +7,19 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      screenWidth: "",
+    };
   },
   mounted() {
     // 默认主题颜色
     this.$store.commit("setTheme");
+    // window.onresize = () => {
+    //   return (() => {
+    //   })();
+    // };
   },
+  methods: {},
 };
 </script>
 

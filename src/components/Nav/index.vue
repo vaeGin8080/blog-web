@@ -55,6 +55,9 @@ export default {
       color: #71777c;
       font-size: 14px;
       cursor: pointer;
+      &:hover {
+        @include font_color();
+      }
     }
     .active {
       @include font_color();

@@ -14,23 +14,40 @@
         />
         <div v-else>
           <div class="blog-head flex-center justify-between">
-            <img :src="blogAuthor && blogAuthor.headerImg" />
+            <img class="img" :src="blogAuthor.headerImg" />
+            <!-- <el-image
+              class="img"
+              fit="cover"
+              :src="blogAuthor.headerImg"
+              :preview-src-list="[blogAuthor && blogAuthor.headerImg]"
+            ></el-image> -->
             <div class="message">
               <a href="">{{ blogAuthor.user_name }}</a>
               <p>
                 {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
               </p>
             </div>
-            <span class="follow flex-ali">关注</span>
+            <span
+              v-if="!isFollow"
+              class="foll follow flex-ali"
+              @click="follow(true)"
+              >关注</span
+            >
+            <span v-else class="foll followed flex-ali" @click="follow(false)"
+              >已关注</span
+            >
           </div>
           <MarkDown :value="value"></MarkDown>
-          <Comment id="comment" :comment="comment" @reply="reply"></Comment>
+          <Comment
+            id="comment"
+            :comment="comment"
+            @reply="reply"
+            @deleteComment="deleteComment"
+          ></Comment>
         </div>
       </template>
 
-      <template v-slot:aside>
-        <!-- <MarkDownMenu :list="navList"></MarkDownMenu> -->
-      </template>
+      <template v-slot:aside> </template>
     </Wrap>
   </div>
 </template>
@@ -44,6 +61,7 @@ import {
   getNoLike,
   getCommentList,
   getSendComment,
+  deleteComment,
 } from "@/api/home";
 import { getUserInfo } from "@/api/user";
 import { parseTime } from "@/utils/utils";
@@ -53,16 +71,8 @@ import Aside from "@/components/Aside";
 import Action from "@/components/Action";
 import Comment from "@/components/Comment";
 import MarkDown from "@/components/MarkDown";
-import MarkDownMenu from "@/components/MarkDownMenu";
-import getTitle from "@/utils/getNav";
-import marked from "marked";
-import hljs from "highlight.js";
-// 设置高亮
-marked.setOptions({
-  highlight: function(code) {
-    return hljs.highlightAuto(code).value;
-  },
-});
+import { mapGetters } from "vuex";
+
 export default {
   name: "Home",
   components: {
@@ -72,13 +82,13 @@ export default {
     Comment,
     Wrap,
     MarkDown,
-    MarkDownMenu,
   },
   data() {
     return {
       parseTime,
       value: "",
       loading: false,
+      isFollow: false,
       bannerList: [
         "https://vaegin.top/img/bg.jpg",
         "https://vaegin.top/img/anxi.jpg",
@@ -103,6 +113,9 @@ export default {
   created() {
     this.init();
   },
+  computed: {
+    ...mapGetters(["userInfo"]),
+  },
   methods: {
     // 初始化，获取文章详情
     init() {
@@ -115,8 +128,6 @@ export default {
         if (res.status == 1) {
           this.value = res.data.blog_content;
           this.blogDetail = res.data;
-          this.value = marked(this.value);
-          // this.navList = getTitle(this.value);
           this.getInfo(this.blogDetail.create_id);
           this.requireComment();
         }
@@ -147,6 +158,9 @@ export default {
         });
       }
     },
+    follow(type) {
+      this.isFollow = type;
+    },
     // 发送评论
     reply(value) {
       let obj = {
@@ -169,13 +183,34 @@ export default {
         }
       });
     },
+    // 评论列表
     requireComment() {
       let obj = {
         id: this.blogDetail.blog_id,
       };
       getCommentList(obj).then((res) => {
         if (res.status === 1) {
-          this.comment = res.data;
+          this.comment = res.data.map((item) => {
+            item.showComment = item.user.user_id == this.userInfo.user_id;
+            return item;
+          });
+        }
+      });
+    },
+    deleteComment(id) {
+      deleteComment({ id }).then((res) => {
+        if (res.status == 1) {
+          this.comment = this.comment.filter((item) => item.id !== id);
+          console.log(this.comment);
+          this.$message({
+            message: "删除成功",
+            type: "success",
+          });
+        } else {
+          this.$message({
+            message: "删除失败",
+            type: "error",
+          });
         }
       });
     },
@@ -201,7 +236,7 @@ $asideBanner: 200px;
   }
   .blog-head {
     padding: 24px 20px 20px 0;
-    & > img {
+    & > .img {
       width: 40px;
       height: 40px;
       margin-right: 12px;
@@ -221,14 +256,21 @@ $asideBanner: 200px;
         margin-top: 4px;
       }
     }
-    .follow {
+    .foll {
       width: 55px;
       height: 26px;
       font-size: 13px;
       border: 1px solid;
+      cursor: pointer;
+      user-select: none;
+    }
+    .follow {
       @include font_color();
       background-color: #fff;
-      cursor: pointer;
+    }
+    .followed {
+      @include bg_color();
+      color: white;
     }
   }
   .mark-wrap {
@@ -268,6 +310,11 @@ $asideBanner: 200px;
       width: 100%;
       height: 100%;
     }
+  }
+}
+@media (max-width: 450px) {
+  .home .blog-head {
+    padding-left: 20px;
   }
 }
 </style>

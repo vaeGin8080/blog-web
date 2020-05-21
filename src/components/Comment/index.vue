@@ -7,7 +7,7 @@
       </div>
       <commentReply @click="reply"></commentReply>
     </div>
-    <commentList :List="comment"></commentList>
+    <commentList :List="comment" @deleteComment="deleteComment"></commentList>
   </div>
 </template>
 
@@ -46,6 +46,9 @@ export default {
   methods: {
     reply(value) {
       this.$emit("reply", value);
+    },
+    deleteComment(id) {
+      this.$emit("deleteComment", id);
     },
   },
 };

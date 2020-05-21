@@ -65,6 +65,11 @@ const constantRoutes = [
       },
     ],
   },
+  {
+    path: "/write",
+    name: "Write",
+    component: () => import("../views/Write/index.vue"),
+  },
 ];
 
 const createRouter = () =>

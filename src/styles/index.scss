@@ -24,5 +24,8 @@ $blue: blue;
 .xs-show {
   display: none;
 }
+.v-note-wrapper {
+  min-height: 100px !important;
+}
 
 @import "./media.scss";

@@ -1,14 +1,16 @@
 <template>
   <div class="article-action">
-    <div class="btn" :class="[item.like ? 'liked' : 'like']" @click="love">
-      <span v-if="item.likeCount">{{ item.likeCount }}</span>
+    <div class="art-wrap flex flex-direction">
+      <div class="btn" :class="[item.like ? 'liked' : 'like']" @click="love">
+        <span v-if="item.likeCount">{{ item.likeCount }}</span>
+      </div>
+      <div class="btn comment">
+        <a :href="href">
+          <span v-if="item.commentCount">{{ item.commentCount }}</span>
+        </a>
+      </div>
+      <div class="btn collect"></div>
     </div>
-    <div class="btn comment">
-      <a :href="href">
-        <span v-if="item.commentCount">{{ item.commentCount }}</span>
-      </a>
-    </div>
-    <div class="btn collect"></div>
   </div>
 </template>
 
@@ -85,6 +87,28 @@ export default {
   }
   .collect {
     background: white url("../../assets/img/collect-big.svg") no-repeat 53% 46%;
+  }
+}
+@media (max-width: 450px) {
+  .article-action {
+    top: auto;
+    bottom: 0%;
+    left: -5px;
+    margin-left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 45px;
+    background: white;
+    .art-wrap {
+      height: 100%;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      .btn {
+        margin-right: 10px;
+        margin-bottom: 0;
+      }
+    }
   }
 }
 </style>

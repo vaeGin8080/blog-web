@@ -8,6 +8,7 @@
         placeholder="请输入评论"
         @focus="handleFocus"
         @blur="handleBlur"
+        @keyup.enter="reply"
       />
     </div>
     <div class="action-box flex-center justify-between" v-show="fouce">
