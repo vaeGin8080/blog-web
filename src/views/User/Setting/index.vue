@@ -69,7 +69,7 @@ export default {
         console.log(res);
         if (res.status == 1) {
           this.$store
-            .dispatch("getUserInfo")
+            .dispatch("user/getUserInfo")
             .then((res) => {
               notify.success("更新成功");
             })

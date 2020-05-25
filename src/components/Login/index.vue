@@ -87,7 +87,7 @@ export default {
       };
       getLogin(obj).then((res) => {
         if (res.status === 1) {
-          this.$store.dispatch("getUserInfo", res.data);
+          this.$store.dispatch("user/getUserInfo", res.data);
           notify.success(res.msg);
           this.$emit("close");
         } else {

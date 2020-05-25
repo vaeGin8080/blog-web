@@ -13,7 +13,7 @@ export default {
   },
   mounted() {
     // 默认主题颜色
-    this.$store.commit("setTheme");
+    this.$store.commit("setting/setTheme");
     // window.onresize = () => {
     //   return (() => {
     //   })();

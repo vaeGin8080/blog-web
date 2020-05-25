@@ -1,6 +1,8 @@
 import { setSession, getSession, removeSession } from "@/utils/session";
 import { getUserInfo } from "@/api/user";
 export default {
+  name: "user",
+  namespaced: true,
   state: {
     userInfo: getSession("userInfo") || {},
     isLogin: getSession("isLogin") || false,
@@ -11,7 +13,6 @@ export default {
     handleUserInfo(state, data) {
       state.userInfo = data;
       state.isLogin = true;
-      console.log(state.userInfo);
       setSession("userInfo", state.userInfo);
       setSession("isLogin", state.isLogin);
     },
@@ -38,7 +39,6 @@ export default {
         }
         getUserInfo(obj)
           .then((res) => {
-            console.log(res);
             if (res.status == 1) {
               commit("handleUserInfo", res.data);
               resolve(res.data);

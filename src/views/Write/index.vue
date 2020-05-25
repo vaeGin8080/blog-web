@@ -9,7 +9,9 @@
         />
       </div>
       <div class="header-right">
-        <el-button type="primary" @click="publish">发布</el-button>
+        <el-button type="primary" @click="publish">{{
+          id ? "更新" : "发布"
+        }}</el-button>
         <div class="panel" v-show="isPanel" @blur="publish">
           <h3>发布文章</h3>
           <div class="up">
@@ -50,12 +52,15 @@
             </ul>
           </div>
           <div class="flex-ali btn">
-            <el-button type="primary" @click="submit">确定并发布</el-button>
+            <el-button type="primary" @click="submit">{{
+              id ? "确定并更新" : "确定并发布"
+            }}</el-button>
           </div>
         </div>
       </div>
     </div>
     <MarkDown
+      :value="form.blog_content"
       class="flex-sub"
       :editable="true"
       :subfield="true"
@@ -69,7 +74,7 @@
 <script>
 import MarkDown from "@/components/MarkDown";
 import UploadImg from "@/components/UploadImg";
-import { articreInsert } from "@/api/write";
+import { articreInsert, detail, update } from "@/api/write";
 import { mapGetters } from "vuex";
 import notify from "@/utils/notify";
 export default {
@@ -88,12 +93,26 @@ export default {
       tagIndex: 0,
       defaultImg: require("@/assets/img/default-avatar.svg"),
       isPanel: false,
+      id: this.$route.query.id,
     };
   },
   computed: {
     ...mapGetters(["userInfo"]),
   },
+  created() {
+    if (this.id) this.init(this.id);
+  },
   methods: {
+    init(id) {
+      detail({
+        blog_id: id,
+      }).then((res) => {
+        if (res.status == 1) {
+          this.form = res.data;
+          console.log(this.form);
+        }
+      });
+    },
     tagTab(index) {
       this.tagIndex = index;
       this.form.blog_tag = this.tag[index];
@@ -117,6 +136,7 @@ export default {
         return;
       }
       let form = {
+        blog_id: this.form.blog_id,
         blog_title: this.form.blog_title,
         blog_author: this.userInfo.user_name,
         blog_brief: this.form.blog_brief,
@@ -124,15 +144,27 @@ export default {
         blog_content: this.form.blog_content,
         blog_cover: this.form.blog_cover,
       };
-      articreInsert(form).then((res) => {
-        if (res.status === 1) {
-          this.$message.success("发布成功");
-          this.$router.replace("/home");
-        } else {
-          this.$message.error("发布失败");
-        }
-        this.publish();
-      });
+      console.log(form);
+      if (!this.id) {
+        articreInsert(form).then((res) => {
+          if (res.status === 1) {
+            this.$message.success("发布成功");
+            this.$router.replace("/home");
+          } else {
+            this.$message.error("发布失败");
+          }
+          this.publish();
+        });
+      } else {
+        update(form).then((res) => {
+          if (res.status === 1) {
+            this.$message.success("更新成功");
+            this.$router.back();
+          } else {
+            this.$message.error("更新失败");
+          }
+        });
+      }
     },
   },
 };

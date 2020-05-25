@@ -16,5 +16,13 @@
     .setting-box {
       padding: 10px 0;
     }
+
+    // markdown 编辑器
+    .v-note-panel {
+      flex-direction: column;
+      > div {
+        width: 100%;
+      }
+    }
   }
 }

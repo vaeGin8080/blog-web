@@ -150,17 +150,17 @@ export default {
         this.$router.push({
           path: "/",
         });
-        this.$store.commit("removeLogin");
+        this.$store.commit("user/removeLogin");
       }
     },
     themeChange(val) {
-      this.$store.dispatch("changeSetting", {
+      this.$store.dispatch("setting/changeSetting", {
         key: "theme",
         value: val,
       });
     },
     setTheme(index) {
-      this.$store.commit("setTheme", index);
+      this.$store.commit("setting/setTheme", index);
     },
   },
 };

@@ -2,11 +2,15 @@
   <div class="article-action">
     <div class="art-wrap flex flex-direction">
       <div class="btn" :class="[item.like ? 'liked' : 'like']" @click="love">
-        <span v-if="item.likeCount">{{ item.likeCount }}</span>
+        <span v-if="item.likeCount">{{
+          item.likeCount == 0 ? 0 : item.likeCount
+        }}</span>
       </div>
       <div class="btn comment">
         <a :href="href">
-          <span v-if="item.commentCount">{{ item.commentCount }}</span>
+          <span v-if="item.commentCount">{{
+            item.commentCount == 0 ? 0 : item.commentCount
+          }}</span>
         </a>
       </div>
       <div class="btn collect"></div>
@@ -32,7 +36,7 @@ export default {
   methods: {
     love() {
       if (!this.$store.getters.isLogin) {
-        this.$store.commit("handleTime");
+        this.$store.commit("user/handleTime");
         return false;
       }
       this.$emit("love", this.item.likeCount);

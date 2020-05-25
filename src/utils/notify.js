@@ -1,6 +1,6 @@
 import { Notification } from "element-ui";
 export default {
-  success(title, position = "") {
+  success(title, position = "top-right") {
     Notification.success({
       title: "成功",
       message: title,
@@ -9,7 +9,7 @@ export default {
       position: position,
     });
   },
-  error(title, position = "") {
+  error(title, position = "top-right") {
     Notification.error({
       title: "错误",
       message: title,

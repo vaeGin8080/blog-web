@@ -29,3 +29,12 @@ export function getUserUpdatePass(data) {
     data,
   });
 }
+
+// 查询登录用户文章列表
+export function getMineList(params) {
+  return request({
+    url: "/list",
+    method: "get",
+    params,
+  });
+}

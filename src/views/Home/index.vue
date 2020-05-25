@@ -13,13 +13,7 @@
         />
       </li> -->
       <div class="flex-sub">
-        <sLink
-          v-for="(item, index) in list"
-          :path="`/detail?id=${item.blog_id}`"
-          :key="index"
-        >
-          <Item :item="item" @handleLove="handleLove"></Item>
-        </sLink>
+        <Item :list="list" @handleLove="handleLove"></Item>
         <Status :cg="status"></Status>
       </div>
       <template v-slot:aside>
@@ -32,13 +26,14 @@
 <script>
 // eslint-disable-line
 import { getList } from "@/api/home";
-import sLink from "@/components/Link";
 import Aside from "@/components/Aside";
 import Status from "@/components/Status";
 import Item from "./item";
+import list from "@/mixin/list";
 export default {
   name: "Home",
-  components: { sLink, Item, Aside, Status },
+  components: { Item, Aside, Status },
+  mixins: [list],
   data() {
     return {
       loading: false,
@@ -66,10 +61,6 @@ export default {
         "https://vaegin.top/img/qingzi.jpeg",
       ],
       list: [],
-      status: "",
-      page: 1,
-      pageSize: 10,
-      hasNext: true,
     };
   },
   created() {

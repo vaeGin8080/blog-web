@@ -18,7 +18,6 @@ service.interceptors.request.use(
     // do something before request is sent
     let uid = store.getters.userInfo && store.getters.userInfo.user_id;
     config.headers = {
-      "X-Agent": "Juejin/Web",
       uid: uid,
     };
     return config;

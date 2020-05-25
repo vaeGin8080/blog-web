@@ -5,13 +5,13 @@
         <el-image
           class="header-img"
           fit="cover"
-          :src="userInfo.headerImg"
-          :preview-src-list="[userInfo.headerImg]"
+          :src="user.headerImg"
+          :preview-src-list="[user.headerImg]"
         ></el-image>
         <div class="info-box">
-          <h1>{{ userInfo.user_name }}</h1>
+          <h1>{{ user.user_name }}</h1>
           <div class="job">
-            <span>{{ userInfo.job }}</span>
+            <span>{{ user.job }}</span>
           </div>
           <div class="desc">
             <span>{{ descInfo }}</span>
@@ -21,30 +21,51 @@
           <span class="btn flex-ali" @click="goSetting">编辑个人资料</span>
         </div>
       </div>
+      <div class="line bg-gray"></div>
+      <Tabs :list="tabList" v-model="tabIndex" @tab-act="tabClick"></Tabs>
+      <MyArticle></MyArticle>
+      <template v-slot:aside>
+        <Aside :bannerList="bannerList"></Aside>
+      </template>
     </Wrap>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import { getUserInfo } from "@/api/user";
 import Wrap from "@/components/Wrap";
+import Tabs from "@/components/Tabs";
+import MyArticle from "./MyArticle/index";
+import list from "@/mixin/list";
+
 export default {
   name: "User",
-  components: { Wrap },
+  components: { Wrap, Tabs, MyArticle },
+  mixins: [list],
   data() {
     return {
       active: 0,
+      tabIndex: 0,
       timer: null,
       desc: [
         "你的信仰是什么？",
-        "你有哪些武（ji）器（shu）？",
-        "你的人生格言是什么？",
-        "你有哪些爱好？",
+        "你有哪些武器？",
+        "你喜欢吃青椒么？",
+        "你喜欢冲浪么？",
       ],
+      bannerList: [
+        "https://vaegin.top/img/bg.jpg",
+        "https://vaegin.top/img/anxi.jpg",
+        "https://vaegin.top/img/qingzi.jpeg",
+      ],
+      tabList: ["专栏"],
+      user: {
+        headerImg: "",
+      },
     };
   },
   computed: {
-    ...mapGetters(["userInfo"]),
     descInfo() {
       return this.desc[this.active];
     },
@@ -57,7 +78,17 @@ export default {
   },
   methods: {
     init() {
+      this.require();
       this.changeDesc();
+    },
+    require() {
+      // 获取用户信息
+      let id = this.$route.query.id;
+      let obj = { id };
+      getUserInfo(obj).then((res) => {
+        this.user = res.data;
+        console.log(this.user);
+      });
     },
     changeDesc() {
       clearInterval(this.timer);
@@ -73,13 +104,21 @@ export default {
         name: "Setting",
       });
     },
+    tabClick({ index, item }) {
+      this.tabIndex = index;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.line {
+  width: 100%;
+  height: 12px;
+}
 .user-header {
   padding: 30px;
+  margin-bottom: 10px;
   .header-img {
     width: 90px;
     height: 90px;

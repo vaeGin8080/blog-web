@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="path"
+    :to="'/detail?id=' + path"
     :tag="tag"
     v-slot="{ href, route, navigate, isActive }"
   >
@@ -16,7 +16,7 @@ export default {
   name: "Link",
   props: {
     path: {
-      type: String,
+      type: [String, Number],
       default: "",
     },
     tag: {

@@ -3,6 +3,8 @@ import { isMobile } from "@/utils/utils";
 import variables from "@/styles/element-variables.scss";
 
 export default {
+  name: "setting",
+  namespaced: true,
   state: {
     theme: variables.theme,
     themeIndex: getSession("themeIndex") || "",

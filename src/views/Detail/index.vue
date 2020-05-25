@@ -14,15 +14,15 @@
         />
         <div v-else>
           <div class="blog-head flex-center justify-between">
-            <img class="img" :src="blogAuthor.headerImg" />
+            <img class="img" :src="blogDetail.headerImg" />
             <!-- <el-image
               class="img"
               fit="cover"
-              :src="blogAuthor.headerImg"
-              :preview-src-list="[blogAuthor && blogAuthor.headerImg]"
+              :src="blogDetail.headerImg"
+              :preview-src-list="[blogDetail && blogDetail.headerImg]"
             ></el-image> -->
             <div class="message">
-              <a href="">{{ blogAuthor.user_name }}</a>
+              <a href="">{{ blogDetail.user_name }}</a>
               <p>
                 {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
               </p>
@@ -37,6 +37,7 @@
               >已关注</span
             >
           </div>
+          <BGimg :src="blogDetail.blog_cover"></BGimg>
           <MarkDown :value="value"></MarkDown>
           <Comment
             id="comment"
@@ -47,7 +48,9 @@
         </div>
       </template>
 
-      <template v-slot:aside> </template>
+      <template v-slot:aside>
+        <Aside :bannerList="bannerList"></Aside>
+      </template>
     </Wrap>
   </div>
 </template>
@@ -128,17 +131,10 @@ export default {
         if (res.status == 1) {
           this.value = res.data.blog_content;
           this.blogDetail = res.data;
-          this.getInfo(this.blogDetail.create_id);
+          console.log(this.blogDetail);
           this.requireComment();
         }
         this.loading = false;
-      });
-    },
-    // 获取用户信息
-    getInfo(id) {
-      let obj = { id };
-      getUserInfo(obj).then((res) => {
-        this.blogAuthor = res.data;
       });
     },
     // 点赞、取消赞
@@ -198,21 +194,24 @@ export default {
       });
     },
     deleteComment(id) {
-      deleteComment({ id }).then((res) => {
-        if (res.status == 1) {
-          this.comment = this.comment.filter((item) => item.id !== id);
-          console.log(this.comment);
-          this.$message({
-            message: "删除成功",
-            type: "success",
-          });
-        } else {
-          this.$message({
-            message: "删除失败",
-            type: "error",
-          });
+      deleteComment({ id: id, blog_id: this.blogDetail.blog_id }).then(
+        (res) => {
+          if (res.status == 1) {
+            this.comment = this.comment.filter((item) => item.id !== id);
+            this.blogDetail.commentCount--;
+            console.log(this.comment);
+            this.$message({
+              message: "删除成功",
+              type: "success",
+            });
+          } else {
+            this.$message({
+              message: "删除失败",
+              type: "error",
+            });
+          }
         }
-      });
+      );
     },
 
     change(value) {},
@@ -272,6 +271,11 @@ $asideBanner: 200px;
       @include bg_color();
       color: white;
     }
+  }
+  .back-img {
+    width: 100%;
+    min-height: 350px;
+    max-height: 350px;
   }
   .mark-wrap {
     padding: 20px 0;

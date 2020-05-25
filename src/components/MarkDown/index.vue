@@ -1,6 +1,6 @@
 <template>
   <mavon-editor
-    :value="markContent"
+    :value="editable ? value : markContent"
     :editable="editable"
     :ishljs="true"
     :toolbarsFlag="tool"
@@ -86,7 +86,7 @@ export default {
       return marked(this.value);
     },
     navigation() {
-      return !this.$isMB();
+      return !this.$isMB() && false;
     },
   },
   methods: {

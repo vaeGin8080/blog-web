@@ -30,7 +30,7 @@ export default {
   methods: {
     handleFocus() {
       if (!this.$store.getters.isLogin) {
-        this.$store.commit("handleTime");
+        this.$store.commit("user/handleTime");
         return false;
       }
       this.fouce = true;
