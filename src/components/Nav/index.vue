@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="menu" :class="{ 'is-auto': autoHeader }">
     <ul class="nav-list container flex-center">
       <li
         class="nav-item"
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Nav",
   props: ["navList", "type"],
@@ -22,6 +23,9 @@ export default {
     return {
       acitve: 0,
     };
+  },
+  computed: {
+    ...mapGetters(["autoHeader"]),
   },
   methods: {
     tabAct(index, item) {
@@ -45,8 +49,7 @@ export default {
   height: 45px;
   z-index: 100;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: all 0.2s;
-  transform: translateZ(0);
+  transition: all 0.1s;
   background: white;
   .nav-list {
     height: 100%;
@@ -63,5 +66,8 @@ export default {
       @include font_color();
     }
   }
+}
+.is-auto {
+  top: 0;
 }
 </style>

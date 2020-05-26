@@ -1,6 +1,6 @@
 <template>
   <div class="header flex-ali">
-    <header class="fix-header">
+    <header class="fix-header" :class="{ 'is-auto': autoHeader }">
       <div class="container header-container flex">
         <a class="logo flex-center">
           <img src="https://vaegin.top/img/qingzi.jpeg" alt="晓风残月" />
@@ -30,10 +30,14 @@
               <router-link to="/write">
                 <el-button class="artice" type="primary">写文章</el-button>
               </router-link>
+
               <i class="el-icon-message-solid"></i>
               <el-dropdown @command="handleCommand" trigger="click">
                 <div class="el-dropdown-link flex-center">
-                  <img class="header-img" :src="userInfo.headerImg" />
+                  <img
+                    class="header-img"
+                    :src="userInfo.headerImg || defaultImg"
+                  />
                 </div>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="a">我的主页</el-dropdown-item>
@@ -93,8 +97,10 @@ export default {
     return {
       acitve: 0,
       show: false,
+      isShow: true,
       showTheme: false,
       type: 0,
+      defaultImg: require("@/assets/img/default-avatar.svg"),
       navList: [
         {
           label: "首页",
@@ -108,7 +114,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["userInfo", "isLogin", "timeStamp"]),
+    ...mapGetters(["userInfo", "isLogin", "timeStamp", "autoHeader"]),
     defaultTh() {
       return getSession("theme");
     },
@@ -230,12 +236,15 @@ $height: 60px;
   top: 0;
   left: 0;
   right: 0;
-  transition: all 0.2s;
+  transition: all 0.1s;
   background: #fff;
   height: 61px;
   color: #909090;
   z-index: 1600;
   padding: 0 10px;
   border-bottom: 1px solid #f1f1f1;
+}
+.is-auto {
+  top: -100%;
 }
 </style>

@@ -1,5 +1,4 @@
 import { setSession, getSession, removeSession } from "@/utils/session";
-import { isMobile } from "@/utils/utils";
 import variables from "@/styles/element-variables.scss";
 
 export default {
@@ -8,6 +7,7 @@ export default {
   state: {
     theme: variables.theme,
     themeIndex: getSession("themeIndex") || "",
+    autoHeader: true,
   },
   mutations: {
     CHANGE_SETTING: (state, data) => {
@@ -27,6 +27,10 @@ export default {
         "data-theme",
         state.themeIndex
       );
+    },
+    // 是否需要改变header位置
+    changeHeader(state, data) {
+      state.autoHeader = data;
     },
   },
   actions: {

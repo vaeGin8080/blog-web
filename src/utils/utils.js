@@ -47,12 +47,10 @@ export function debounce(func, wait) {
   return function() {
     let context = this;
     let args = arguments;
-    console.log("xx");
     if (timeout) clearTimeout(timeout);
     console.log(timeout);
     let callNow = !timeout;
     timeout = setTimeout(() => {
-      console.log("in");
       func.apply(context, args);
       timeout = null;
     }, wait);
@@ -61,33 +59,12 @@ export function debounce(func, wait) {
     }
   };
 }
-/*
- * fn [function] 需要节流的函数
- * delay [number] 毫秒，节流期限值
- */
-/* export function throttle(fn,delay){
-    let valid = true
-    return function() {
-		console.log(2);
-       if(!valid){
-           //休息时间 暂不接客
-           return false 
-       }
-       // 工作时间，执行函数并且在间隔期内把状态位设为无效
-        valid = false
-        setTimeout(() => {
-            fn()
-            valid = true;
-        }, delay)
-    }
-}
- */
+
 export function throttle(fn, wait) {
   var timer = null;
   return function() {
     var context = this;
     var args = arguments;
-    console.log(1);
     if (!timer) {
       timer = setTimeout(() => {
         fn.apply(context, args);
