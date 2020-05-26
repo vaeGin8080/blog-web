@@ -13,20 +13,23 @@
           }"
         />
         <div v-else>
-          <div class="blog-head flex-center justify-between">
-            <img class="img" :src="blogDetail.headerImg" />
-            <!-- <el-image
+          <!-- <el-image
               class="img"
               fit="cover"
               :src="blogDetail.headerImg"
               :preview-src-list="[blogDetail && blogDetail.headerImg]"
             ></el-image> -->
-            <div class="message">
-              <a href="">{{ blogDetail.user_name }}</a>
-              <p>
-                {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
-              </p>
+          <div class="blog-head flex-center justify-between">
+            <div class="head-jump flex" @click="jumpDetail">
+              <img class="img" :src="blogDetail.headerImg" />
+              <div class="message">
+                <router-link to="">{{ blogDetail.user_name }}</router-link>
+                <p>
+                  {{ parseTime(blogDetail.create_date, "{y}-{m}-{d}") }}
+                </p>
+              </div>
             </div>
+
             <span
               v-if="!isFollow"
               class="foll follow flex-ali"
@@ -213,8 +216,15 @@ export default {
         }
       );
     },
-
     change(value) {},
+    jumpDetail() {
+      this.$router.push({
+        path: "/user/index",
+        query: {
+          id: this.blogDetail.user_id,
+        },
+      });
+    },
   },
 };
 </script>
@@ -235,7 +245,10 @@ $asideBanner: 200px;
   }
   .blog-head {
     padding: 24px 20px 20px 0;
-    & > .img {
+    .head-jump {
+      cursor: pointer;
+    }
+    .img {
       width: 40px;
       height: 40px;
       margin-right: 12px;

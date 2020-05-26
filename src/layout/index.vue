@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap">
+  <div class="wrap" v-infinite-scroll="init">
     <Header></Header>
     <div class="container">
       <!-- out-in：当前元素先进行过渡，完成之后新元素过渡进入。 -->
@@ -13,12 +13,12 @@
 <script>
 // import Sticky from "@/components/Sticky";
 import Header from "./header";
-import { debounce, throttle } from "@/utils/utils";
-
+import scroll from "@/mixin/scroll";
 export default {
   components: {
     Header,
   },
+  mixins: [scroll],
   data() {
     return {
       visibleHead: true,
@@ -29,30 +29,9 @@ export default {
       return this.$route.path;
     },
   },
-  mounted() {
-    // 只监听pc端滚动
-    window.addEventListener("scroll", throttle(this.handleScroll, 500), true);
-  },
-  destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
+  mounted() {},
   methods: {
-    handleScroll() {
-      var scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      var scroll = scrollTop - this.i;
-      this.i = scrollTop;
-      // console.log(scrollTop, this.i, scroll);
-      if (scroll < 0) {
-        // console.log("up");
-        this.$store.commit("setting/changeHeader", false);
-      } else {
-        // console.log("down");
-        this.$store.commit("setting/changeHeader", true);
-      }
-    },
+    init() {},
   },
 };
 </script>
@@ -60,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .wrap {
   background-attachment: fixed;
-  height: 100%;
   overflow: auto;
+  height: 100%;
 }
 </style>

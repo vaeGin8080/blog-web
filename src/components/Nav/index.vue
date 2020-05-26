@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" :class="{ 'is-auto': autoHeader }">
+  <div class="menu" :class="{ 'is-auto': !autoHeader }">
     <ul class="nav-list container flex-center">
       <li
         class="nav-item"
@@ -34,7 +34,7 @@ export default {
       let label = item.label;
       if (index == 0) label = "";
       if (this.type == "index") label = index;
-      this.$emit("tab", label);
+      this.$emit("tab", { label, index });
     },
   },
 };

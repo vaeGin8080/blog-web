@@ -8,6 +8,7 @@ export default {
     theme: variables.theme,
     themeIndex: getSession("themeIndex") || "",
     autoHeader: true,
+    isSole: false,
   },
   mutations: {
     CHANGE_SETTING: (state, data) => {
@@ -31,6 +32,10 @@ export default {
     // 是否需要改变header位置
     changeHeader(state, data) {
       state.autoHeader = data;
+    },
+    // 是否触底
+    changeDown(state, data) {
+      state.isSole = data;
     },
   },
   actions: {

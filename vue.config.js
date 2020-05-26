@@ -1,7 +1,7 @@
 "use strict";
 const path = require("path");
 const defaultSettings = require("./src/settings.js");
-
+const TerserPlugin = require("terser-webpack-plugin");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }

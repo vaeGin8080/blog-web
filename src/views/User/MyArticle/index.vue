@@ -7,7 +7,12 @@
       </div>
     </div>
     <ul class="article-ul">
-      <Item :list="list" @edit="edit" @remove="remove"></Item>
+      <Item
+        :list="list"
+        :isEdit="isCurrent(id)"
+        @edit="edit"
+        @remove="remove"
+      ></Item>
     </ul>
   </div>
 </template>
@@ -23,6 +28,7 @@ import { remove } from "@/api/write";
 import notify from "@/utils/notify";
 export default {
   name: "MyArticle",
+  props: ["id"],
   components: { sLink, Aside, Status, Item },
   data() {
     return {
@@ -34,11 +40,14 @@ export default {
     this.init();
   },
   computed: {
-    ...mapGetters(["userInfo"]),
+    ...mapGetters(["userInfo", "isCurrent"]),
   },
   methods: {
     init() {
-      getMineList().then((res) => {
+      let obj = {
+        id: this.id,
+      };
+      getMineList(obj).then((res) => {
         if (res.status === 1) {
           this.list = res.data.data;
           console.log(this.list);

@@ -11,19 +11,24 @@
         <div class="info-box">
           <h1>{{ user.user_name }}</h1>
           <div class="job">
-            <span>{{ user.job }}</span>
+            <span v-if="user.job">{{ user.job }} | </span>
+            <span>{{ user.user_compony || "" }}</span>
           </div>
-          <div class="desc">
+          <div class="desc" v-if="isCurrent(id)">
             <span>{{ descInfo }}</span>
           </div>
+          <span class="job" v-else>{{ user.brief }}</span>
         </div>
         <div class="action-box flex align-end">
-          <span class="btn flex-ali" @click="goSetting">编辑个人资料</span>
+          <span class="btn flex-ali" @click="goSetting" v-if="isCurrent(id)"
+            >编辑个人资料</span
+          >
+          <span class="btn flex-ali" v-else>关注</span>
         </div>
       </div>
       <div class="line bg-gray"></div>
       <Tabs :list="tabList" v-model="tabIndex" @tab-act="tabClick"></Tabs>
-      <MyArticle></MyArticle>
+      <MyArticle :id="id"></MyArticle>
       <template v-slot:aside>
         <Aside :bannerList="bannerList"></Aside>
       </template>
@@ -63,9 +68,11 @@ export default {
       user: {
         headerImg: "",
       },
+      id: this.$route.query.id,
     };
   },
   computed: {
+    ...mapGetters(["userInfo", "isCurrent"]),
     descInfo() {
       return this.desc[this.active];
     },
@@ -83,7 +90,7 @@ export default {
     },
     require() {
       // 获取用户信息
-      let id = this.$route.query.id;
+      let id = this.id;
       let obj = { id };
       getUserInfo(obj).then((res) => {
         this.user = res.data;
@@ -129,6 +136,7 @@ export default {
     flex: 1;
     .job {
       margin-top: 12px;
+      margin-bottom: 3px;
       color: #72777b;
       font-size: 14px;
     }

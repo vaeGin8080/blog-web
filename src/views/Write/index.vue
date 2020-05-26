@@ -174,7 +174,7 @@ export default {
 $height: 64px;
 .wrap {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: white;
   .write-header {
     width: 100%;

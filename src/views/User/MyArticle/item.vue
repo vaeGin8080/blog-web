@@ -28,7 +28,7 @@
           </div>
         </li>
       </sLink>
-      <li class="fix">
+      <li class="fix" v-if="isEdit">
         <el-dropdown placement="top" trigger="click" @command="command">
           <span class="el-dropdown-link">
             <i class="el-icon-more"></i>
@@ -60,6 +60,7 @@ export default {
         return [];
       },
     },
+    isEdit: Boolean,
   },
   data() {
     return {};

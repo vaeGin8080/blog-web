@@ -1,6 +1,7 @@
 <template>
+  <!-- :value="editable ? value : markContent" -->
   <mavon-editor
-    :value="editable ? value : markContent"
+    :value="value"
     :editable="editable"
     :ishljs="true"
     :toolbarsFlag="tool"

@@ -1,6 +1,6 @@
 <template>
   <div class="header flex-ali">
-    <header class="fix-header" :class="{ 'is-auto': autoHeader }">
+    <header class="fix-header" :class="{ 'is-auto': !autoHeader }">
       <div class="container header-container flex">
         <a class="logo flex-center">
           <img src="https://vaegin.top/img/qingzi.jpeg" alt="晓风残月" />

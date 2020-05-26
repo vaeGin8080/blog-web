@@ -48,7 +48,6 @@ export function debounce(func, wait) {
     let context = this;
     let args = arguments;
     if (timeout) clearTimeout(timeout);
-    console.log(timeout);
     let callNow = !timeout;
     timeout = setTimeout(() => {
       func.apply(context, args);
@@ -60,7 +59,11 @@ export function debounce(func, wait) {
   };
 }
 
-export function throttle(fn, wait) {
+/*
+ * fn [function] 需要节流的函数
+ * delay [number] 毫秒，节流期限值
+ */
+export function throttle(fn, wait = 500) {
   var timer = null;
   return function() {
     var context = this;
@@ -69,6 +72,7 @@ export function throttle(fn, wait) {
       timer = setTimeout(() => {
         fn.apply(context, args);
         timer = null;
+        console.log("xc");
       }, wait);
     }
   };

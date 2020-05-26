@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { debounce, throttle } from "@/utils/utils";
+
 export default {
   data() {
     return {
@@ -14,11 +16,8 @@ export default {
   mounted() {
     // 默认主题颜色
     this.$store.commit("setting/setTheme");
-    // window.onresize = () => {
-    //   return (() => {
-    //   })();
-    // };
   },
+  destroyed() {},
   methods: {},
 };
 </script>
@@ -30,6 +29,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
-  background-color: #f4f5f5;
+  // height: 100%;
 }
 </style>
