@@ -4,9 +4,7 @@
     <div class="container">
       <!-- out-in：当前元素先进行过渡，完成之后新元素过渡进入。 -->
       <transition name="fade" mode="out-in">
-        <div>
-          <router-view :key="key"></router-view>
-        </div>
+        <router-view :key="key"></router-view>
       </transition>
     </div>
   </div>
@@ -24,7 +22,6 @@ export default {
   data() {
     return {
       visibleHead: true,
-      scrollTop: 0,
     };
   },
   computed: {
@@ -47,11 +44,12 @@ export default {
         document.body.scrollTop;
       var scroll = scrollTop - this.i;
       this.i = scrollTop;
+      // console.log(scrollTop, this.i, scroll);
       if (scroll < 0) {
-        console.log("up");
+        // console.log("up");
         this.$store.commit("setting/changeHeader", false);
       } else {
-        console.log("down");
+        // console.log("down");
         this.$store.commit("setting/changeHeader", true);
       }
     },

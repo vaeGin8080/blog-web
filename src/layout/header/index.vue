@@ -245,6 +245,6 @@ $height: 60px;
   border-bottom: 1px solid #f1f1f1;
 }
 .is-auto {
-  top: -100%;
+  top: -61px;
 }
 </style>
