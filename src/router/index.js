@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
 import Index from "@/views/Index";
+import ImgMap from "@/views/ImgMap";
 Vue.use(VueRouter);
 
 const constantRoutes = [
@@ -26,6 +27,11 @@ const constantRoutes = [
     path: "/index",
     name: "Index",
     component: Index,
+  },
+  {
+    path: "/ImgMap",
+    name: "ImgMap",
+    component: ImgMap,
   },
   {
     path: "/detail",

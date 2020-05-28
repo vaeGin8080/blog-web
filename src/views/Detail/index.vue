@@ -29,16 +29,17 @@
                 </p>
               </div>
             </div>
-
-            <span
-              v-if="!isFollow"
-              class="foll follow flex-ali"
-              @click="follow(true)"
-              >关注</span
-            >
-            <span v-else class="foll followed flex-ali" @click="follow(false)"
-              >已关注</span
-            >
+            <div v-if="!isCurrent(blogDetail.user_id)">
+              <span
+                v-if="!isFollow"
+                class="foll follow flex-ali"
+                @click="follow(true)"
+                >关注</span
+              >
+              <span v-else class="foll followed flex-ali" @click="follow(false)"
+                >已关注</span
+              >
+            </div>
           </div>
           <BGimg :src="blogDetail.blog_cover"></BGimg>
           <MarkDown :value="value"></MarkDown>
@@ -120,7 +121,7 @@ export default {
     this.init();
   },
   computed: {
-    ...mapGetters(["userInfo"]),
+    ...mapGetters(["userInfo", "isCurrent"]),
   },
   methods: {
     // 初始化，获取文章详情

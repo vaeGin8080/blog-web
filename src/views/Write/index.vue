@@ -143,6 +143,8 @@ export default {
         blog_tag: this.form.blog_tag,
         blog_content: this.form.blog_content,
         blog_cover: this.form.blog_cover,
+        likeCount: this.form.likeCount,
+        commentCount: this.form.commentCount,
       };
       console.log(form);
       if (!this.id) {

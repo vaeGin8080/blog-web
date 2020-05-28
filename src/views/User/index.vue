@@ -23,7 +23,17 @@
           <span class="btn flex-ali" @click="goSetting" v-if="isCurrent(id)"
             >编辑个人资料</span
           >
-          <span class="btn flex-ali" v-else>关注</span>
+          <div v-else>
+            <span
+              class="foll follow flex-ali"
+              v-if="!isFollow"
+              @click="follow(true)"
+              >关注</span
+            >
+            <span class="foll followed flex-ali" v-else @click="follow(false)"
+              >已关注</span
+            >
+          </div>
         </div>
       </div>
       <div class="line bg-gray"></div>
@@ -69,6 +79,7 @@ export default {
         headerImg: "",
       },
       id: this.$route.query.id,
+      isFollow: false,
     };
   },
   computed: {
@@ -113,6 +124,9 @@ export default {
     },
     tabClick({ index, item }) {
       this.tabIndex = index;
+    },
+    follow(type) {
+      this.isFollow = type;
     },
   },
 };
@@ -162,6 +176,23 @@ export default {
       @include font_color();
       border: 1px solid;
       cursor: pointer;
+    }
+    .foll {
+      max-width: 118px;
+      height: 34px;
+      padding: 5px 20px;
+      font-size: 13px;
+      border: 1px solid;
+      cursor: pointer;
+      user-select: none;
+    }
+    .follow {
+      @include font_color();
+      background-color: #fff;
+    }
+    .followed {
+      @include bg_color();
+      color: white;
     }
   }
 }

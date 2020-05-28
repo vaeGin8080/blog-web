@@ -48,14 +48,10 @@ export function debounce(func, wait) {
     let context = this;
     let args = arguments;
     if (timeout) clearTimeout(timeout);
-    let callNow = !timeout;
     timeout = setTimeout(() => {
       func.apply(context, args);
       timeout = null;
     }, wait);
-
-    if (callNow) {
-    }
   };
 }
 
@@ -72,7 +68,6 @@ export function throttle(fn, wait = 500) {
       timer = setTimeout(() => {
         fn.apply(context, args);
         timer = null;
-        console.log("xc");
       }, wait);
     }
   };

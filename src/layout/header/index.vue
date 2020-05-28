@@ -13,10 +13,12 @@
                   class="nav-item"
                   :class="{ active: acitve == index }"
                   v-for="(item, index) in navList"
-                  @click="tabAct(index)"
+                  @click="tabAct(index, item.type)"
                   :key="index"
                 >
-                  <router-link :to="item.path"> {{ item.label }}</router-link>
+                  <router-link :to="item.path" tag="a" :target="item.type">
+                    {{ item.label }}</router-link
+                  >
                 </li>
               </ul>
             </li>
@@ -106,10 +108,11 @@ export default {
           label: "首页",
           path: "/home",
         },
-        // {
-        //   label: "文章",
-        //   path: "/home",
-        // },
+        {
+          label: "图库",
+          path: "/ImgMap",
+          type: "_blank",
+        },
       ],
     };
   },
@@ -129,8 +132,8 @@ export default {
   },
   mounted() {},
   methods: {
-    tabAct(index) {
-      this.acitve = index;
+    tabAct(index, type) {
+      if (!type) this.acitve = index;
     },
     showDialog(type) {
       this.type = type;

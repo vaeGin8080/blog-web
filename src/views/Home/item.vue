@@ -6,7 +6,7 @@
           <p class="info">
             <i class="info-act">专栏 </i>
             <span>{{ item.blog_author }}</span>
-            {{ item.create_date | parseTime }}
+            <span>{{ item.create_date | getDateDiff }}</span>
             <span>{{ item.blog_tag }}</span>
             <!-- <span v-for="(itemTag, indexTag) in item.node.tags" :key="indexTag"
               >A·{{ itemTag.title }}</span
