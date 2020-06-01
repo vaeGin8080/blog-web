@@ -59,7 +59,7 @@ export function debounce(func, wait) {
  * fn [function] 需要节流的函数
  * delay [number] 毫秒，节流期限值
  */
-export function throttle(fn, wait = 500) {
+export function throttle(fn, wait) {
   var timer = null;
   return function() {
     var context = this;

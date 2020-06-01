@@ -5,7 +5,7 @@ export default {
     return {};
   },
   mounted() {
-    // 只监听pc端滚动
+    // 监听滚动
     window.addEventListener("scroll", debounce(this.handleScroll, 200), true);
   },
   destroyed() {

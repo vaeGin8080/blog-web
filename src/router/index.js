@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
-import Index from "@/views/Index";
 import ImgMap from "@/views/ImgMap";
 Vue.use(VueRouter);
 
@@ -24,14 +23,37 @@ const constantRoutes = [
     ],
   },
   {
-    path: "/index",
-    name: "Index",
-    component: Index,
-  },
-  {
     path: "/ImgMap",
     name: "ImgMap",
     component: ImgMap,
+  },
+  {
+    path: "/Topics",
+    name: "Topics",
+    redirect: "/Topics/index",
+    component: Layout,
+    children: [
+      {
+        path: "index",
+        name: "index",
+        meta: {
+          title: "话题",
+        },
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/Topics/index.vue"),
+      },
+      {
+        path: "detail",
+        name: "TopicsDetail",
+        meta: {
+          title: "话题详情",
+        },
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "../views/TopicsDetail/index.vue"
+          ),
+      },
+    ],
   },
   {
     path: "/detail",

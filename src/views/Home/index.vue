@@ -115,11 +115,12 @@ export default {
         const data = res.data.data;
         if (data.length == 0) {
           this.status = "";
-          return;
+          // return;
+        } else {
+          navItem.list = [...navItem.list, ...data];
         }
         let hasNext = res.data.page.hasNext;
         this.$set(navItem, "hasNext", hasNext);
-        navItem.list = [...navItem.list, ...data];
 
         this.loading = false;
         this.page++;

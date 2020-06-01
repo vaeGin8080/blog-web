@@ -7,7 +7,7 @@
         </a>
         <nav class="flex-sub">
           <ul class="h-100 flex-center justify-between">
-            <li class="h-100">
+            <li class="h-100 xs-hide">
               <ul class="flex-center">
                 <li
                   class="nav-item"
@@ -22,9 +22,24 @@
                 </li>
               </ul>
             </li>
-            <!-- <li class="xs-show">
-              <span class="nav-item">首页</span>
-            </li> -->
+            <li class="xs-show">
+              <el-select
+                v-model="value"
+                placeholder="请选择"
+                style="width: 100px"
+              >
+                <el-option
+                  v-for="item in navList"
+                  :key="item.type"
+                  :label="item.label"
+                  :value="item.path"
+                >
+                  <router-link :to="item.path" tag="a" :target="item.type">
+                    {{ item.label }}</router-link
+                  >
+                </el-option>
+              </el-select>
+            </li>
             <li
               class="user-info flex-center"
               v-if="userInfo && userInfo.user_id"
@@ -97,7 +112,7 @@ export default {
   directives: { elDragDialog },
   data() {
     return {
-      acitve: 0,
+      acitve: -1,
       show: false,
       isShow: true,
       showTheme: false,
@@ -109,11 +124,16 @@ export default {
           path: "/home",
         },
         {
+          label: "话题",
+          path: "/topics",
+        },
+        {
           label: "图库",
           path: "/ImgMap",
           type: "_blank",
         },
       ],
+      value: "/home",
     };
   },
   computed: {
