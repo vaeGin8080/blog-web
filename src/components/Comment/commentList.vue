@@ -16,7 +16,7 @@
         <div class="meta">{{ item.user && item.user.user_name }}</div>
         <div class="content">{{ item.comment }}</div>
         <div class="reply">
-          {{ item.create_time | parseTime("{y}-{m}-{d} {h}:{i}") }}
+          {{ item.create_time | getDateDiff }}
         </div>
         <div
           class="sub-comment"

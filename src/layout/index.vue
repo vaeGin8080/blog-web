@@ -18,6 +18,13 @@
         <router-view :key="key"></router-view>
       </transition>
     </div>
+    <div
+      class="root-bg"
+      :style="{
+        backgroundImage: `url(${rootBG})`,
+        backgroundSize: 'cover',
+      }"
+    ></div>
   </div>
 </template>
 
@@ -25,6 +32,8 @@
 // import Sticky from "@/components/Sticky";
 import Header from "./header";
 import scroll from "@/mixin/scroll";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     Header,
@@ -33,12 +42,14 @@ export default {
   data() {
     return {
       visibleHead: true,
+      bg: "https://wallpaper.infinitynewtab.com/wallpaper/342.jpg",
     };
   },
   computed: {
     key() {
       return this.$route.path;
     },
+    ...mapGetters(["rootBG"]),
   },
   mounted() {},
   methods: {
@@ -59,5 +70,13 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+.root-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
 }
 </style>

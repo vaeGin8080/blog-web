@@ -9,6 +9,7 @@ export default {
     themeIndex: getSession("themeIndex") || "",
     autoHeader: true,
     isSole: false,
+    rootBG: getSession("rootBG") || "",
   },
   mutations: {
     CHANGE_SETTING: (state, data) => {
@@ -36,6 +37,14 @@ export default {
     // 是否触底
     changeDown(state, data) {
       state.isSole = data;
+    },
+    set_bg(state, data) {
+      state.rootBG = data;
+      setSession("rootBG", state.rootBG);
+    },
+    remove_bg(state, data) {
+      state.rootBG = "";
+      removeSession("rootBG");
     },
   },
   actions: {

@@ -40,6 +40,7 @@ $asideBanner: 200px;
   max-width: $aside;
   width: $aside;
   margin-left: 20px;
+  background: white;
   &-banner {
     height: $asideBanner;
     margin-bottom: 20px;

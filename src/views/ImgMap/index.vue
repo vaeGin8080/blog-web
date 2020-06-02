@@ -13,6 +13,15 @@
       </div>
       <div class="trunk"></div>
     </div>
+    <div class="set" @click="setBG">
+      <p>设为壁纸</p>
+    </div>
+    <div class="set s2" @click="removeBG" v-if="rootBG">
+      <p>取消壁纸</p>
+    </div>
+    <div class="set s3" @click="back">
+      <i class="el-icon-back"></i>
+    </div>
     <Dialog :show.sync="show" title="图库">
       <p>点击右下角风车切换图片</p>
       <br />
@@ -23,7 +32,7 @@
 
 <script>
 import Dialog from "@/components/Dialog";
-
+import { mapGetters } from "vuex";
 export default {
   name: "ImgMap",
   components: { Dialog },
@@ -40,6 +49,9 @@ export default {
   },
   created() {
     this.init();
+  },
+  computed: {
+    ...mapGetters(["rootBG"]),
   },
   methods: {
     init() {
@@ -60,6 +72,17 @@ export default {
     run() {
       this.isRun = !this.isRun;
       this.init();
+    },
+    setBG() {
+      this.$store.commit("setting/set_bg", this.url);
+      this.$message.success("设置成功");
+    },
+    removeBG() {
+      this.$store.commit("setting/remove_bg");
+      this.$message.success("恢复默认");
+    },
+    back() {
+      this.$router.back();
     },
   },
 };
@@ -101,6 +124,35 @@ export default {
     margin-left: -2px;
     background-color: #fdfdfd;
   }
+}
+.set {
+  position: fixed;
+  z-index: 120;
+  right: 50px;
+  top: 20px;
+  width: 100px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s;
+  &:hover {
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+  }
+}
+.s2 {
+  top: 60px;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+.s3 {
+  width: 30px;
+  left: 20px;
+  border-radius: 50%;
 }
 .is-run {
   transform: rotate(1420deg);

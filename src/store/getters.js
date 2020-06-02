@@ -6,6 +6,7 @@ const getters = {
   themeIndex: (state) => state.setting.themeIndex,
   autoHeader: (state) => state.setting.autoHeader,
   isSole: (state) => state.setting.isSole,
+  rootBG: (state) => state.setting.rootBG,
   isCurrent: (state) => (id) => id == state.user.userInfo.user_id,
 };
 export default getters;

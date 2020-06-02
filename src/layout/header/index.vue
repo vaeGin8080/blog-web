@@ -130,7 +130,7 @@ export default {
         {
           label: "图库",
           path: "/ImgMap",
-          type: "_blank",
+          // type: "_blank",
         },
       ],
       value: "/home",
