@@ -13,11 +13,12 @@
           <div class="flex flex-direction">
             <h4 class="title">{{ item.user.username }}</h4>
             <p class="info flex">
-              <span>{{ item.user.jobTitle }} 关注</span>
-              <span>{{ item.updatedAt | getDateDiff }} 沸点</span>
+              <span>{{ item.user.jobTitle }}</span>
+              <span>{{ item.updatedAt | getDateDiff }}</span>
             </p>
           </div>
         </div>
+        <p class="message">{{ item.content }}</p>
         <ul class="pic-list flex flex-wrap ">
           <li
             class="flex flex-wrap"
@@ -96,6 +97,13 @@ $box: 45px;
     border-radius: 12px;
     margin-right: 12px;
   }
+}
+.message {
+  margin: 10px 0;
+  color: #17181a;
+  font-size: 15px;
+  margin-left: 54px;
+  line-height: 25px;
 }
 .pic-list {
   margin: 15px 64px 0 54px;
