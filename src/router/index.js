@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
 import ImgMap from "@/views/ImgMap";
+import Charts from "@/views/Charts";
 Vue.use(VueRouter);
 
 const constantRoutes = [
@@ -26,6 +27,11 @@ const constantRoutes = [
     path: "/ImgMap",
     name: "ImgMap",
     component: ImgMap,
+  },
+  {
+    path: "/Charts",
+    name: "Charts",
+    component: Charts,
   },
   {
     path: "/Topics",
@@ -61,7 +67,7 @@ const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: "index",
+        path: "index/:id",
         name: "Detail",
         meta: {
           title: "博客详情",

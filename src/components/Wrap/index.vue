@@ -40,8 +40,5 @@ export default {
   margin-top: 65px;
 }
 @media (max-width: 450px) {
-  .home .home-content {
-    padding: 0;
-  }
 }
 </style>

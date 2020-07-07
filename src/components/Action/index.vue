@@ -14,13 +14,26 @@
         </a>
       </div>
       <div class="btn collect"></div>
+      <div class="share">
+        <span>分享</span>
+      </div>
+      <div class="btn weibo" @click="share('weibo', item)"></div>
+      <div class="btn qq" @click="share('qq', item)"></div>
+      <div
+        class="btn wechat"
+        @click="share('wechat')"
+        @mouseenter="wechatHover"
+        @mouseleave="wechatLeave"
+      ></div>
     </div>
+    <qrCode v-show="show" class="code" :url="url"></qrCode>
   </div>
 </template>
-
 <script>
+import qrCode from "../qrCode";
 export default {
   name: "Action",
+  components: { qrCode },
   props: {
     item: {
       type: Object,
@@ -31,7 +44,15 @@ export default {
     href: String,
   },
   data() {
-    return {};
+    return {
+      show: false,
+    };
+  },
+  mounted() {},
+  computed: {
+    url() {
+      return document.location.href;
+    },
   },
   methods: {
     love() {
@@ -41,6 +62,38 @@ export default {
       }
       this.$emit("love", this.item.likeCount);
     },
+    wechatHover() {
+      this.show = true;
+    },
+    wechatLeave() {
+      this.show = false;
+    },
+    share(type, item) {
+      if (type == "qq") {
+        window.open(
+          "http://connect.qq.com/widget/shareqq/index.html?url=" +
+            encodeURIComponent(document.location.href) +
+            "&sharesource=qzone&title=" +
+            item.blog_title +
+            "&pics=" +
+            item.blog_cover +
+            "&summary= " +
+            item.blog_brief +
+            "&desc= " +
+            item.blog_brief
+        );
+      } else if (type == "weibo") {
+        window.open(
+          "http://service.weibo.com/share/share.php?url=" +
+            encodeURIComponent(document.location.href) +
+            "?sharesource=weibo&title=" +
+            item.blog_title +
+            " 掘金专栏 &pic=" +
+            item.blog_cover +
+            "&appkey=818434258"
+        );
+      }
+    },
   },
 };
 </script>
@@ -49,7 +102,7 @@ export default {
 .article-action {
   position: fixed;
   top: 190px;
-  margin-left: -72px;
+  margin-left: -110px;
 
   .btn {
     width: 36px;
@@ -87,11 +140,43 @@ export default {
     background: white url("../../assets/img/liked-big.svg") no-repeat 53% 46%;
   }
   .comment {
-    background: white url("../../assets/img/comment-big.svg") no-repeat 53% 46%;
+    background: white url("../../assets/img/comment-big.svg") no-repeat 50% 55%;
   }
   .collect {
     background: white url("../../assets/img/collect-big.svg") no-repeat 53% 46%;
   }
+  .weibo {
+    background: white url("../../assets/img/weibo.svg") no-repeat 50% 46%;
+    &:hover {
+      background: white url("../../assets/img/weibo-hover.svg") no-repeat 50%
+        46%;
+    }
+  }
+  .qq {
+    background: white url("../../assets/img/qq.svg") no-repeat 49% 46%;
+    &:hover {
+      background: white url("../../assets/img/qq-hover.svg") no-repeat 49% 46%;
+    }
+  }
+  .wechat {
+    background: white url("../../assets/img/wechat.svg") no-repeat 50% 48%;
+    &:hover {
+      background: white url("../../assets/img/wechat-hover.svg") no-repeat 50%
+        48%;
+    }
+  }
+  .share {
+    width: 36px;
+    color: #c6c6c6;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 20px;
+  }
+}
+.code {
+  margin-left: -30px;
+  margin-top: 10px;
 }
 @media (max-width: 450px) {
   .article-action {

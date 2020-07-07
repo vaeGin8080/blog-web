@@ -1,3 +1,5 @@
+import { MessageBox } from "element-ui";
+
 /* 日期转化 */
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
@@ -97,4 +99,22 @@ export function isMobile() {
   );
   let width = document.body.clientWidth;
   return flag || width <= 450 ? true : false;
+}
+
+export function messageBox(title, confire, cancal) {
+  console.log(2);
+  return new Promise((res, rej) => {
+    console.log(3);
+    MessageBox.confirm("确定要删除么?", "提示", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning",
+    })
+      .then(() => {
+        res();
+      })
+      .catch(() => {
+        rej();
+      });
+  });
 }

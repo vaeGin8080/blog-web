@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="wrap">
     <div
       class="img-map"
+      :class="{ 'is-Img': !isImg }"
       :style="{
+        backgroundColor: '#666',
         backgroundImage: `url(${url})`,
         backgroundSize: 'cover',
       }"
@@ -22,7 +24,7 @@
     <div class="set s3" @click="back">
       <i class="el-icon-back"></i>
     </div>
-    <Dialog :show.sync="show" title="图库">
+    <Dialog v-if="showDialog" :show.sync="show" title="图库">
       <p>点击右下角风车切换图片</p>
       <br />
       <p>需要的可以保存下载哦</p>
@@ -45,13 +47,17 @@ export default {
       cc: require("@/assets/img/login-pass.png"),
       isRun: false,
       show: true,
+      isImg: true,
     };
   },
-  created() {
+  mounted() {
     this.init();
   },
   computed: {
     ...mapGetters(["rootBG"]),
+    showDialog() {
+      return this.show && !this.rootBG;
+    },
   },
   methods: {
     init() {
@@ -59,13 +65,18 @@ export default {
       let url = `https://wallpaper.infinitynewtab.com/wallpaper/${parseInt(
         random
       )}.jpg`;
+      this.isImg = false;
       fetch(url).then((res) => {
         // 等待img加载完成在替换
         let img = new Image();
         img.src = res.url;
         let that = this;
+        setTimeout(() => {
+          that.isImg = true;
+          that.url = res.url;
+        }, 500);
         img.onload = function() {
-          that.url = this.src;
+          // that.url = this.src;
         };
       });
     },
@@ -89,14 +100,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrap {
+  background: #333;
+  width: 100%;
+  height: 100vh;
+}
 .img-map {
   width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  transition: background cubic-bezier(0.42, 0, 0.38, 0.94) 0.3s;
+  opacity: 1;
+  transition: background cubic-bezier(0.42, 0, 0.38, 0.94) 0.5s;
+  transition: opacity ease 500ms;
 }
+.is-Img {
+  opacity: 0;
+  transition: opacity ease 500ms;
+}
+
 .random {
   position: fixed;
   z-index: 100;

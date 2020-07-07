@@ -105,3 +105,24 @@
     border-bottom: $transparent-border-style;
   }
 }
+
+/*文本格式化，超出范围，显示省略号*/
+@mixin text-overflow($width: 100%) {
+  width: $width;
+  display: inline-block; /** 对象作为伸缩盒子模型显示 **/
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 1; /** 显示的行数 **/
+  overflow: hidden;
+}
+
+@mixin moreLine($width: 100%, $column: 2) {
+  width: $width;
+  word-break: break-all; /** word-break 属性规定自动换行的处理方法，允许在单词内换行 **/
+  text-overflow: ellipsis; /** 文字超出显示省略号 **/
+  display: inline-block; /** 对象作为伸缩盒子模型显示 **/
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: $column; /** 显示的行数 **/
+  overflow: hidden; /** 隐藏超出的内容 **/
+}

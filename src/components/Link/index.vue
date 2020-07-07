@@ -1,6 +1,6 @@
 <template>
   <router-link
-    :to="defaultPath + '?id=' + path"
+    :to="defaultPath + '/' + path"
     :tag="tag"
     v-slot="{ href, route, navigate, isActive }"
   >
@@ -25,7 +25,7 @@ export default {
     },
     defaultPath: {
       type: String,
-      default: "/detail",
+      default: "/detail/index",
     },
   },
   computed: {

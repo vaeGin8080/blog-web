@@ -39,9 +39,9 @@
       <div class="line bg-gray"></div>
       <Tabs :list="tabList" v-model="tabIndex" @tab-act="tabClick"></Tabs>
       <MyArticle :id="id"></MyArticle>
-      <template v-slot:aside>
+      <!--   <template v-slot:aside>
         <Aside :bannerList="bannerList"></Aside>
-      </template>
+      </template> -->
     </Wrap>
   </div>
 </template>

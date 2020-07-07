@@ -48,8 +48,8 @@ export default {
   },
 
   methods: {
-    tab(tag) {
-      this.active = tag;
+    tab({ label, index }) {
+      this.active = index;
     },
     success(value) {
       let obj = {

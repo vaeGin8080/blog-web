@@ -21,9 +21,9 @@
         ></Item>
         <Status :cg="status"></Status>
       </div>
-      <template v-slot:aside>
+      <!-- <template v-slot:aside>
         <Aside :bannerList="bannerList"></Aside>
-      </template>
+      </template> -->
     </Wrap>
   </div>
 </template>
@@ -71,9 +71,9 @@ export default {
         },
       ],
       bannerList: [
-        "https://vaegin.top/img/bg.jpg",
-        "https://vaegin.top/img/anxi.jpg",
-        "https://vaegin.top/img/qingzi.jpeg",
+        "https://vaegin.top/img/20180818104651_cGNvT.jpeg",
+        "https://vaegin.top/img/20160308193117_nkfKX.jpeg",
+        "https://vaegin.top/img/20160308193000_RAcVw.jpeg",
       ],
       list: [],
       tag: "",

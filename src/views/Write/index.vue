@@ -25,6 +25,17 @@
               <UploadImg :isLimit="false" @success="success"></UploadImg>
             </div>
           </div>
+          <div class="up">
+            <h4>BGM</h4>
+            <div class="flex flex-direction">
+              <span>{{ form.BGM }}</span>
+              <UploadImg
+                :isLimit="false"
+                :type="'sound'"
+                @success="successBGM"
+              ></UploadImg>
+            </div>
+          </div>
           <div>
             <h4>分类</h4>
             <ul class="flex">
@@ -88,6 +99,7 @@ export default {
         blog_cover: "",
         blog_brief: "",
         blog_content: "",
+        BGM: "",
       },
       tag: ["前端", "后端", "其他"],
       tagIndex: 0,
@@ -120,6 +132,9 @@ export default {
     success(value) {
       this.form.blog_cover = value;
     },
+    successBGM(value) {
+      this.form.BGM = value.realname;
+    },
     publish() {
       this.isPanel = !this.isPanel;
     },
@@ -145,6 +160,7 @@ export default {
         blog_cover: this.form.blog_cover,
         likeCount: this.form.likeCount,
         commentCount: this.form.commentCount,
+        BGM: this.form.BGM,
       };
       console.log(form);
       if (!this.id) {
@@ -236,6 +252,12 @@ $height: 64px;
         }
         .up {
           margin-bottom: 8px;
+          span {
+            display: inline-block;
+            width: 250px;
+            @include text-overflow(250px);
+            margin-bottom: 5px;
+          }
         }
         .header-img {
           width: 72px;

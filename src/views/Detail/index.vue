@@ -52,9 +52,9 @@
         </div>
       </template>
 
-      <template v-slot:aside>
+      <!-- <template v-slot:aside>
         <Aside :bannerList="bannerList"></Aside>
-      </template>
+      </template> -->
     </Wrap>
   </div>
 </template>
@@ -96,11 +96,7 @@ export default {
       value: "",
       loading: false,
       isFollow: false,
-      bannerList: [
-        "https://vaegin.top/img/bg.jpg",
-        "https://vaegin.top/img/anxi.jpg",
-        "https://vaegin.top/img/qingzi.jpeg",
-      ],
+      bannerList: ["https://vaegin.top/img/17170d2b351b06a2.gif"],
       list: [],
       blogDetail: {},
       blogAuthor: {},
@@ -118,6 +114,7 @@ export default {
     };
   },
   created() {
+    console.log(this.$route);
     this.init();
   },
   computed: {
@@ -127,7 +124,7 @@ export default {
     // 初始化，获取文章详情
     init() {
       this.loading = true;
-      let id = this.$route.query.id;
+      let id = this.$route.params.id;
       let obj = {
         id,
       };
@@ -159,6 +156,10 @@ export default {
       }
     },
     follow(type) {
+      if (!this.$store.getters.isLogin) {
+        this.$store.commit("user/handleTime");
+        return false;
+      }
       this.isFollow = type;
     },
     // 发送评论

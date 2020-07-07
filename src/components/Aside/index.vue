@@ -1,17 +1,19 @@
 <template>
   <div class="aside">
-    <!-- <div class="info flex-center flex-direction">
+    <div class="info flex-center flex-direction">
       <img :src="url" class="animation-mi" />
       <h2>晓风残月</h2>
-    </div> -->
-    <!-- <div v-for="(item, index) in bannerList" :key="index" class="aside-banner">
-      <div
+      <h4 style="margin-top: 10px">前来觐见</h4>
+      <h6 style="margin-top: 10px">快来护驾</h6>
+    </div>
+    <div v-for="(item, index) in bannerList" :key="index" class="aside-banner">
+      <!-- <div
         :style="{
           backgroundImage: `url(${item})`,
           backgroundSize: 'cover',
         }"
-      ></div>
-    </div> -->
+      ></div> -->
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,7 @@ export default {
   },
   data() {
     return {
-      url: "https://vaegin.top/img/qingzi.jpeg",
+      url: "https://vaegin.top/img/empty.gif",
     };
   },
 };
@@ -52,6 +54,7 @@ $asideBanner: 200px;
 }
 .info {
   margin-bottom: 50px;
+  margin-top: 20px;
   img {
     width: 120px;
     height: 120px;
@@ -61,5 +64,8 @@ $asideBanner: 200px;
     animation-duration: 3s;
     animation-iteration-count: infinite;
   }
+}
+.aside-banner {
+  padding: 0 10px;
 }
 </style>

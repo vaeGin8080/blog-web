@@ -3,7 +3,7 @@
     <header class="fix-header" :class="{ 'is-auto': !autoHeader }">
       <div class="container header-container flex">
         <a class="logo flex-center">
-          <img src="https://vaegin.top/img/qingzi.jpeg" alt="晓风残月" />
+          <img :src="url" alt="晓风残月" />
         </a>
         <nav class="flex-sub">
           <ul class="h-100 flex-center justify-between">
@@ -44,7 +44,7 @@
               class="user-info flex-center"
               v-if="userInfo && userInfo.user_id"
             >
-              <router-link to="/write">
+              <router-link to="/write" tag="a" target="_blank">
                 <el-button class="artice" type="primary">写文章</el-button>
               </router-link>
 
@@ -132,8 +132,14 @@ export default {
           path: "/ImgMap",
           // type: "_blank",
         },
+        {
+          label: "大屏",
+          path: "/Charts",
+          type: "_blank",
+        },
       ],
       value: "/home",
+      url: "https://vaegin.top/img/empty.gif",
     };
   },
   computed: {
@@ -189,6 +195,7 @@ export default {
       });
     },
     setTheme(index) {
+      // console.log(index);
       this.$store.commit("setting/setTheme", index);
     },
   },

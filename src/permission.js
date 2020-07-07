@@ -7,7 +7,7 @@ import getPageTitle from "@/utils/get-page-title";
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
-const whiteList = ["/home", "/detail/index"]; // no redirect whitelist
+const whiteList = ["/home", "/detail/index", "/ImgMap"]; // no redirect whitelist
 
 router.beforeEach(async (to, from, next) => {
   // start progress bar
@@ -28,6 +28,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       console.log("one else");
       // other pages that do not have permission to access are redirected to the login page.
+      Message.error("请登录");
       next(`/?redirect=${to.path}`);
       NProgress.done();
     }

@@ -26,6 +26,7 @@ import Item from "./item";
 import { getMineList } from "@/api/user";
 import { remove } from "@/api/write";
 import notify from "@/utils/notify";
+import { messageBox } from "@/utils/utils";
 export default {
   name: "MyArticle",
   props: ["id"],
@@ -66,12 +67,17 @@ export default {
       let obj = {
         blog_id: item.blog_id,
       };
-      remove(obj).then((res) => {
-        if (res.status == 1) {
-          this.init();
-          notify.success(res.msg);
-        }
-      });
+      messageBox()
+        .then((res) => {
+          console.log(1);
+          remove(obj).then((res) => {
+            if (res.status == 1) {
+              this.init();
+              notify.success(res.msg);
+            }
+          });
+        })
+        .catch(() => {});
     },
   },
 };
@@ -88,7 +94,5 @@ export default {
   span {
     font-size: 14px;
   }
-}
-.article-ul {
 }
 </style>

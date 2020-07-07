@@ -9,6 +9,7 @@
     @change="change"
     :subfield="subfield"
     :boxShadow="false"
+    :codeStyle="'vs'"
     :defaultOpen="defaultOpen"
     :navigation="navigation"
     ref="md"
