@@ -4,9 +4,9 @@
       <div class="root-bg">
         <Item :list="list"></Item>
       </div>
-      <template v-slot:aside>
+      <!--     <template v-slot:aside>
         <Aside :bannerList="bannerList"></Aside>
-      </template>
+      </template> -->
     </Wrap>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
   methods: {
     init() {
       getPinList().then((res) => {
-        this.list = res.d.list;
+        this.list = res.d.list.reverse();
         console.log(this.list);
       });
     },

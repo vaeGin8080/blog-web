@@ -19,6 +19,7 @@
               :src="blogDetail.headerImg"
               :preview-src-list="[blogDetail && blogDetail.headerImg]"
             ></el-image> -->
+
           <div class="blog-head flex-center justify-between">
             <div class="head-jump flex" @click="jumpDetail">
               <img class="img" :src="blogDetail.headerImg" />
@@ -41,7 +42,13 @@
               >
             </div>
           </div>
-          <BGimg :src="blogDetail.blog_cover"></BGimg>
+          <div class="blog-t">
+            <div class="blog-title">
+              <span>{{ blogDetail.blog_title }}</span>
+            </div>
+            <BGimg :src="blogDetail.blog_cover"></BGimg>
+          </div>
+
           <MarkDown :value="value"></MarkDown>
           <Comment
             id="comment"
@@ -132,7 +139,6 @@ export default {
         if (res.status == 1) {
           this.value = res.data.blog_content;
           this.blogDetail = res.data;
-          console.log(this.blogDetail);
           this.requireComment();
         }
         this.loading = false;
@@ -287,6 +293,17 @@ $asideBanner: 200px;
       color: white;
     }
   }
+  .blog-t {
+    .blog-title {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 20px 0;
+      span {
+        @include text-overflow();
+      }
+    }
+  }
+
   .back-img {
     width: 100%;
     min-height: 350px;
@@ -332,8 +349,5 @@ $asideBanner: 200px;
   }
 }
 @media (max-width: 450px) {
-  .home .blog-head {
-    padding-left: 20px;
-  }
 }
 </style>

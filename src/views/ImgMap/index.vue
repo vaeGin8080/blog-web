@@ -73,10 +73,10 @@ export default {
         let that = this;
         setTimeout(() => {
           that.isImg = true;
-          that.url = res.url;
+          // that.url = res.url;
         }, 500);
         img.onload = function() {
-          // that.url = this.src;
+          that.url = this.src;
         };
       });
     },
@@ -101,7 +101,7 @@ export default {
 
 <style lang="scss" scoped>
 .wrap {
-  background: #333;
+  // background: #333;
   width: 100%;
   height: 100vh;
 }
@@ -111,13 +111,11 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  opacity: 1;
-  transition: background cubic-bezier(0.42, 0, 0.38, 0.94) 0.5s;
-  transition: opacity ease 500ms;
+  // transition: background cubic-bezier(0.42, 0, 0.38, 0.94) 0.5s;
+  transition: background ease 500ms;
 }
 .is-Img {
-  opacity: 0;
-  transition: opacity ease 500ms;
+  transition: background ease 500ms;
 }
 
 .random {

@@ -78,13 +78,9 @@
       @setTheme="setTheme"
       :defaultTh="defaultTh"
     />
+    <!-- v-el-drag-dialog -->
 
-    <Dialog
-      v-el-drag-dialog
-      v-if="show"
-      :show.sync="show"
-      :title="type == 0 ? '登录' : '注册'"
-    >
+    <Dialog v-if="show" :show.sync="show" :title="type == 0 ? '登录' : '注册'">
       <Login v-if="type == 0" @onChange="showDialog" @close="close"></Login>
       <Register v-else @onChange="showDialog" @close="close"></Register>
     </Dialog>
@@ -133,13 +129,13 @@ export default {
           // type: "_blank",
         },
         {
-          label: "大屏",
-          path: "/Charts",
+          label: "可视化",
+          path: "/myScreen",
           type: "_blank",
         },
       ],
       value: "/home",
-      url: "https://vaegin.top/img/empty.gif",
+      url: require("@/assets/img/dog.jpg"),
     };
   },
   computed: {
@@ -225,7 +221,7 @@ $height: 60px;
     border-radius: 50%;
     img {
       width: 100%;
-      height: 38px;
+      height: 60px;
       object-fit: contain;
       border-radius: 50%;
     }

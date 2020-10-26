@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
 import ImgMap from "@/views/ImgMap";
-import Charts from "@/views/Charts";
 Vue.use(VueRouter);
 
 const constantRoutes = [
@@ -29,11 +28,6 @@ const constantRoutes = [
     component: ImgMap,
   },
   {
-    path: "/Charts",
-    name: "Charts",
-    component: Charts,
-  },
-  {
     path: "/Topics",
     name: "Topics",
     redirect: "/Topics/index",
@@ -49,7 +43,7 @@ const constantRoutes = [
           import(/* webpackChunkName: "about" */ "../views/Topics/index.vue"),
       },
       {
-        path: "detail",
+        path: "detail/:id",
         name: "TopicsDetail",
         meta: {
           title: "话题详情",
@@ -103,6 +97,38 @@ const constantRoutes = [
     path: "/write",
     name: "Write",
     component: () => import("../views/Write/index.vue"),
+  },
+  {
+    path: "/Editor",
+    name: "Editor",
+    meta: {
+      title: "可视化编辑",
+    },
+    component: () => import("../views/Editor/index.vue"),
+  },
+  {
+    path: "/EditorDetail",
+    name: "EditorDetail",
+    meta: {
+      title: "可视化展示",
+    },
+    component: () => import("../views/EditorDetail/index.vue"),
+  },
+  {
+    path: "/myScreen",
+    name: "myScreen",
+    meta: {
+      title: "我的项目",
+    },
+    component: () => import("../views/myScreen/index.vue"),
+  },
+  {
+    path: "/chooseScreen",
+    name: "chooseScreen",
+    meta: {
+      title: "选择项目",
+    },
+    component: () => import("../views/myScreen/chooseScreen.vue"),
   },
 ];
 

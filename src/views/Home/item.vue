@@ -2,7 +2,7 @@
   <div>
     <sLink v-for="(item, index) in list" :path="item.blog_id" :key="index">
       <div class="item flex-center justify-between w-100">
-        <div>
+        <div class="item-w">
           <p class="info">
             <i class="info-act">专栏 </i>
             <span>{{ item.blog_author }}</span>
@@ -62,10 +62,14 @@ export default {
 $box: 60px;
 
 .item {
+  flex: 1;
   padding: 15px 20px;
   border-bottom: 1px solid rgba(178, 186, 194, 0.15);
   &:hover {
     background-color: rgba(0, 0, 0, 0.01);
+  }
+  .item-w {
+    max-width: calc(100% - 70px);
   }
   .info {
     color: #b2bac2;
@@ -85,6 +89,8 @@ $box: 60px;
     display: inline-block;
     margin: 5px 0 5px;
     font-size: 18px;
+    overflow: hidden;
+    @include text-overflow();
   }
   .desc {
     font-size: 13px;
@@ -94,6 +100,7 @@ $box: 60px;
   .avter {
     width: $box;
     height: $box;
+    min-width: $box;
   }
   .action-list {
     & > li {

@@ -7,8 +7,8 @@ import getPageTitle from "@/utils/get-page-title";
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
-const whiteList = ["/home", "/detail/index", "/ImgMap"]; // no redirect whitelist
-
+const whiteList = ["/home", "/detail", "/ImgMap", "/Editor"]; // no redirect whitelist
+const whiteName = ["Detail"];
 router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start();
@@ -22,7 +22,12 @@ router.beforeEach(async (to, from, next) => {
   if (hasToken) {
     next();
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
+    console.log(to);
+
+    if (
+      whiteList.indexOf(to.path) !== -1 ||
+      whiteName.indexOf(to.name) !== -1
+    ) {
       // in the free login whitelist, go directly
       next();
     } else {

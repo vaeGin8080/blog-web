@@ -4,7 +4,7 @@
   <div>
     <Wrap :hasNav="true">
       <Nav @tab="tab" :navList="navList"></Nav>
-      <!-- <li v-if="loading">
+      <!--   <li v-if="loading">
         <skeleton
           type="listcom"
           active
@@ -92,6 +92,7 @@ export default {
   watch: {
     isSole(news) {
       if (news) {
+        console.log(news);
         this.init();
       }
     },

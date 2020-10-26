@@ -24,11 +24,13 @@ export default {
       // console.log(scrollTop, clientHeight, scrollHeight);
       if (scroll < 0) {
         // console.log("up");
-        this.$store.commit("setting/changeHeader", true);
+        // this.$store.commit("setting/changeHeader", true);
       } else {
         // console.log("down");
-        this.$store.commit("setting/changeHeader", false);
+        // this.$store.commit("setting/changeHeader", false);
       }
+      // console.log(scrollTop);
+      // console.log(scrollHeight);
       if (scrollTop + clientHeight >= scrollHeight) {
         // 加载更多操作
         // console.log("触底了");

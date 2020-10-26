@@ -17,6 +17,14 @@ export default {
   data() {
     return {
       list: [],
+      form: {},
+      config: {
+        inline: false,
+        labelPosition: "left",
+        labelWidth: "80px",
+        size: "small",
+        statusIcon: true,
+      },
     };
   },
   created() {

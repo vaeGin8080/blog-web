@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <ul class="nav-list container flex-center">
+    <ul class="nav-list flex-center">
       <li
         class="nav-item"
         :class="{ active: active == index }"
@@ -49,7 +49,6 @@ export default {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.2s;
   transform: translateZ(0);
-  background: white;
   .nav-list {
     height: 100%;
     .nav-item {

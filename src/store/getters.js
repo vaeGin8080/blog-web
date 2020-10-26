@@ -8,5 +8,6 @@ const getters = {
   isSole: (state) => state.setting.isSole,
   rootBG: (state) => state.setting.rootBG,
   isCurrent: (state) => (id) => id == state.user.userInfo.user_id,
+  chartConfig: (state) => state.charts.chartConfig,
 };
 export default getters;

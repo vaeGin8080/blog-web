@@ -102,9 +102,7 @@ export function isMobile() {
 }
 
 export function messageBox(title, confire, cancal) {
-  console.log(2);
   return new Promise((res, rej) => {
-    console.log(3);
     MessageBox.confirm("确定要删除么?", "提示", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",

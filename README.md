@@ -20,7 +20,7 @@
 
 ### 前序准备
 
-需要在本地安装 node 和 git。本项目技术栈基于 ES2015+、vue、vuex、vue-router 、vue-cli 、axios 和 element-ui，所有的请求数据都使用 Express 进行模拟，也可通过 Mock.js 进行模拟
+需要在本地安装 node 和 git。本项目技术栈基于 ES2015+、vue、vuex、vue-router 、vue-cli 、axios 和 element-ui，所有的请求数据都使用 Node 来源，也可通过 Mock.js 进行模拟
 
 ### 安装&构建
 

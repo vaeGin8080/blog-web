@@ -3,13 +3,13 @@
   <mavon-editor
     :value="value"
     :editable="editable"
-    :ishljs="true"
+    :ishljs="false"
     :toolbarsFlag="tool"
     :toolbars="toolbars"
     @change="change"
     :subfield="subfield"
+    :externalLink="true"
     :boxShadow="false"
-    :codeStyle="'vs'"
     :defaultOpen="defaultOpen"
     :navigation="navigation"
     ref="md"
@@ -21,15 +21,15 @@
 
 <script>
 import marked from "marked";
-import hljs from "highlight.js";
+// import hljs from "highlight.js";
 import { realUpload } from "@/api/common";
 
 // 设置高亮
-marked.setOptions({
-  highlight: function(code) {
-    return hljs.highlightAuto(code).value;
-  },
-});
+// marked.setOptions({
+//   highlight: function(code) {
+//     return hljs.highlightAuto(code).value;
+//   },
+// });
 export default {
   name: "MarkDown",
   props: {

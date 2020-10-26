@@ -1,11 +1,19 @@
 <template>
-  <div class="wrap" v-infinite-scroll="init">
+  <div
+    class="wrap"
+    :style="{
+      backgroundImage: `url(${rootBG})`,
+      backgroundAttachment: 'scroll',
+      backgroundSize: 'cover',
+      minHeight: '100vh',
+    }"
+  >
     <Header></Header>
-    <!-- <iframe
+    <iframe
       class="ifr"
       frameborder="none"
       src="https://vaegin.top/right"
-    ></iframe> -->
+    ></iframe>
     <!--   <iframe
       class="ifr"
       frameborder="none"
@@ -18,13 +26,7 @@
         <router-view :key="key"></router-view>
       </transition>
     </div>
-    <div
-      class="root-bg"
-      :style="{
-        backgroundImage: `url(${rootBG})`,
-        backgroundSize: 'cover',
-      }"
-    ></div>
+    <div class="root-bg"></div>
   </div>
 </template>
 

@@ -12,7 +12,7 @@
         <settingPass v-else @submit="updatePass" :title="title"></settingPass>
       </div>
       <template v-slot:aside>
-        <Aside></Aside>
+        <!-- <Aside></Aside> -->
       </template>
     </Wrap>
   </div>

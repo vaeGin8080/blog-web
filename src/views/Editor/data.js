@@ -1,0 +1,53 @@
+import typeOption from "./typeOption";
+export default [
+  {
+    name: "柱状图",
+    value: "1",
+    type: "chart",
+    id: "001",
+    src: require("@/assets/echarts/bar.png"),
+    option: typeOption["bar"],
+  },
+  {
+    name: "折线图",
+    value: "2",
+    type: "chart",
+    id: "002",
+    src: require("@/assets/echarts/lines.png"),
+    option: typeOption["lines"],
+  },
+  {
+    name: "饼图",
+    value: "3",
+    type: "chart",
+    id: "003",
+    src: require("@/assets/echarts/pie.png"),
+    option: typeOption["pie"],
+  },
+  {
+    name: "散点图",
+    value: "3",
+    type: "chart",
+    id: "004",
+    src: require("@/assets/echarts/scatter.png"),
+    option: typeOption["scatter"],
+  },
+  {
+    name: "地图",
+    value: "4",
+    type: "chart",
+    id: "005",
+    src: require("@/assets/echarts/maps.png"),
+    option: typeOption["map"],
+  },
+  {
+    name: "标题",
+    value: "5",
+    type: "title",
+    id: "006",
+    src: "",
+    option: typeOption["title"],
+    width: 300,
+    height: 100,
+  },
+];
