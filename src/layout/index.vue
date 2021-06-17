@@ -3,17 +3,11 @@
     class="wrap"
     :style="{
       backgroundImage: `url(${rootBG})`,
-      backgroundAttachment: 'scroll',
       backgroundSize: 'cover',
       minHeight: '100vh',
     }"
   >
     <Header></Header>
-    <iframe
-      class="ifr"
-      frameborder="none"
-      src="https://vaegin.top/right"
-    ></iframe>
     <!--   <iframe
       class="ifr"
       frameborder="none"
@@ -27,6 +21,11 @@
       </transition>
     </div>
     <div class="root-bg"></div>
+    <!-- <iframe
+      class="ifr"
+      frameborder="none"
+      src="https://vaegin.top/right"
+    ></iframe> -->
   </div>
 </template>
 

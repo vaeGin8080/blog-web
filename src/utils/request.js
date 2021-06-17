@@ -5,7 +5,7 @@ import store from "@/store";
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === "development"
-      ? "https://vaegin.top/blog"
+      ? "http://localhost:3333"
       : "https://vaegin.top/blog",
   // baseURL: process.env.VUE_APP_BASIC_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests

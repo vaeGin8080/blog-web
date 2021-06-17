@@ -45,7 +45,7 @@ export default [
     value: "5",
     type: "title",
     id: "006",
-    src: "",
+    src: require("@/assets/echarts/title.png"),
     option: typeOption["title"],
     width: 300,
     height: 100,
