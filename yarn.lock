@@ -7369,6 +7369,14 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+photo-sphere-viewer@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/photo-sphere-viewer/-/photo-sphere-viewer-4.2.1.tgz#ba13578f15cf1793d49198368e941d6a36b65dd8"
+  integrity sha512-df/DUs/rwGgh3KawbccF/g4CMAT5Mwjqdgaf/PkWQ39A17BbppD7eTT6wkyo/dSsUPalUMPDcvfV2zf5ECk/Cg==
+  dependencies:
+    three "^0.126.0"
+    uevent "~2.0.0"
+
 picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -9261,6 +9269,11 @@ thread-loader@^2.1.3:
     loader-utils "^1.1.0"
     neo-async "^2.6.0"
 
+three@^0.126.0:
+  version "0.126.1"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.126.1.tgz#cf4e4e52060fd952f6f0d5440cbd422c66bc4be7"
+  integrity sha512-eOEXnZeE1FDV0XgL1u08auIP13jxdN9LQBAEmlErYzMxtIIfuGIAZbijOyookALUhqVzVOx0Tywj6n192VM+nQ==
+
 throat@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"
@@ -9486,6 +9499,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+uevent@~2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/uevent/-/uevent-2.0.1.tgz#eda5226f957772a09f0d84868fea634421160d44"
+  integrity sha512-jKGgT4/BVWVRSwGyGjZLen/VvUSKaW5E4JQPD0zBXVc5RP/PHZQrXBJwH1cBynhBV6pSLSbujNMydEC9Dho7ng==
 
 uglify-js@3.4.x:
   version "3.4.10"

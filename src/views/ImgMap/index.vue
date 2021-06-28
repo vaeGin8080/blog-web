@@ -46,7 +46,7 @@ export default {
       fc: require("@/assets/img/fengche.png"),
       cc: require("@/assets/img/login-pass.png"),
       isRun: false,
-      show: true,
+      show: false,
       isImg: true,
     };
   },

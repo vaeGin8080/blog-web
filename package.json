@@ -19,6 +19,7 @@
     "marked": "^1.0.0",
     "mavon-editor": "^2.9.0",
     "nprogress": "^0.2.0",
+    "photo-sphere-viewer": "^4.2.1",
     "qrcodejs2": "^0.0.2",
     "vae-ui": "^0.1.8",
     "vue": "^2.6.11",
