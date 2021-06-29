@@ -171,230 +171,172 @@ export default {
     ],
   },
   lines: {
-    backgroundColor: "rgba(14, 14, 14, 1)",
+    color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
     title: {
-      text: "",
-      textStyle: {
-        align: "center",
-        color: "#fff",
-        fontSize: 20,
-      },
-      top: "5%",
-      left: "center",
+        text: '渐变堆叠面积图'
     },
     tooltip: {
-      trigger: "axis",
-      axisPointer: {
-        lineStyle: {
-          color: {
-            type: "linear",
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 0,
-                color: "rgba(0, 255, 233,0)",
-              },
-              {
-                offset: 0.5,
-                color: "rgba(255, 255, 255,1)",
-              },
-              {
-                offset: 1,
-                color: "rgba(0, 255, 233,0)",
-              },
-            ],
-            global: false,
-          },
-        },
-      },
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
     },
     grid: {
-      top: "15%",
-      left: "5%",
-      right: "5%",
-      bottom: "15%",
-      // containLabel: true
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
     },
     xAxis: [
-      {
-        type: "category",
-        axisLine: {
-          show: true,
-        },
-        splitArea: {
-          // show: true,
-          color: "#f00",
-          lineStyle: {
-            color: "#f00",
-          },
-        },
-        axisLabel: {
-          color: "#fff",
-        },
-        splitLine: {
-          show: false,
-        },
-        boundaryGap: false,
-        data: ["A", "B", "C", "D", "E", "F"],
-      },
+        {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        }
     ],
-
     yAxis: [
-      {
-        type: "value",
-        min: 0,
-        // max: 140,
-        splitNumber: 4,
-        splitLine: {
-          show: true,
-          lineStyle: {
-            color: "rgba(255,255,255,0.1)",
-          },
-        },
-        axisLine: {
-          show: false,
-        },
-        axisLabel: {
-          show: false,
-          margin: 20,
-          textStyle: {
-            color: "#d1e6eb",
-          },
-        },
-        axisTick: {
-          show: false,
-        },
-      },
+        {
+            type: 'value'
+        }
     ],
     series: [
-      {
-        name: "注册总量",
-        type: "line",
-        // smooth: true, //是否平滑
-        showAllSymbol: true,
-        // symbol: 'image://./static/images/guang-circle.png',
-        symbol: "circle",
-        symbolSize: 25,
-        lineStyle: {
-          normal: {
-            color: "#6c50f3",
-            shadowColor: "rgba(0, 0, 0, .3)",
-            shadowBlur: 0,
-            shadowOffsetY: 5,
-            shadowOffsetX: 5,
-          },
+        {
+            name: 'Line 1',
+            type: 'line',
+            stack: '总量',
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(128, 255, 165)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(1, 191, 236)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [140, 232, 101, 264, 90, 340, 250]
         },
-        label: {
-          show: true,
-          position: "top",
-          textStyle: {
-            color: "#6c50f3",
-          },
+        {
+            name: 'Line 2',
+            type: 'line',
+            stack: '总量',
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(0, 221, 255)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(77, 119, 255)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 282, 111, 234, 220, 340, 310]
         },
-        itemStyle: {
-          color: "#6c50f3",
-          borderColor: "#fff",
-          borderWidth: 3,
-          shadowColor: "rgba(0, 0, 0, .3)",
-          shadowBlur: 0,
-          shadowOffsetY: 2,
-          shadowOffsetX: 2,
+        {
+            name: 'Line 3',
+            type: 'line',
+            stack: '总量',
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(55, 162, 255)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(116, 21, 219)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [320, 132, 201, 334, 190, 130, 220]
         },
-        tooltip: {
-          show: false,
+        {
+            name: 'Line 4',
+            type: 'line',
+            stack: '总量',
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(255, 0, 135)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(135, 0, 157)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [220, 402, 231, 134, 190, 230, 120]
         },
-        areaStyle: {
-          normal: {
-            color: new echarts.graphic.LinearGradient(
-              0,
-              0,
-              0,
-              1,
-              [
-                {
-                  offset: 0,
-                  color: "rgba(108,80,243,0.3)",
-                },
-                {
-                  offset: 1,
-                  color: "rgba(108,80,243,0)",
-                },
-              ],
-              false
-            ),
-            shadowColor: "rgba(108,80,243, 0.9)",
-            shadowBlur: 20,
-          },
-        },
-        data: [502.84, 205.97, 332.79, 281.55, 398.35, 214.02],
-      },
-      {
-        name: "注册总量",
-        type: "line",
-        // smooth: true, //是否平滑
-        showAllSymbol: true,
-        // symbol: 'image://./static/images/guang-circle.png',
-        symbol: "circle",
-        symbolSize: 25,
-        lineStyle: {
-          normal: {
-            color: "#00ca95",
-            shadowColor: "rgba(0, 0, 0, .3)",
-            shadowBlur: 0,
-            shadowOffsetY: 5,
-            shadowOffsetX: 5,
-          },
-        },
-        label: {
-          show: true,
-          position: "top",
-          textStyle: {
-            color: "#00ca95",
-          },
-        },
-
-        itemStyle: {
-          color: "#00ca95",
-          borderColor: "#fff",
-          borderWidth: 3,
-          shadowColor: "rgba(0, 0, 0, .3)",
-          shadowBlur: 0,
-          shadowOffsetY: 2,
-          shadowOffsetX: 2,
-        },
-        tooltip: {
-          show: false,
-        },
-        areaStyle: {
-          normal: {
-            color: new echarts.graphic.LinearGradient(
-              0,
-              0,
-              0,
-              1,
-              [
-                {
-                  offset: 0,
-                  color: "rgba(0,202,149,0.3)",
-                },
-                {
-                  offset: 1,
-                  color: "rgba(0,202,149,0)",
-                },
-              ],
-              false
-            ),
-            shadowColor: "rgba(0,202,149, 0.9)",
-            shadowBlur: 20,
-          },
-        },
-        data: [281.55, 398.35, 214.02, 179.55, 289.57, 356.14],
-      },
-    ],
-  },
+        {
+            name: 'Line 5',
+            type: 'line',
+            stack: '总量',
+            smooth: true,
+            lineStyle: {
+                width: 0
+            },
+            showSymbol: false,
+            label: {
+                show: true,
+                position: 'top'
+            },
+            areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(255, 191, 0)'
+                }, {
+                    offset: 1,
+                    color: 'rgba(224, 62, 76)'
+                }])
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            data: [220, 302, 181, 234, 210, 290, 150]
+        }
+    ]
+},
   pie: {
     backgroundColor: "rgba(14, 14, 14, 1)",
     title: {
@@ -463,7 +405,7 @@ export default {
   scatter: {
     backgroundColor: "rgba(14, 14, 14, 1)",
     title: {
-      text: "",
+      text: "0000",
       textStyle: {
         align: "center",
         color: "#fff",

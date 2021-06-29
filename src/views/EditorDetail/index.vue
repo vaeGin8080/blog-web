@@ -57,7 +57,7 @@ export default {
       let boxHeight = document.getElementsByClassName("wrap-editor")[0]
         .offsetHeight;
       let obj = { transform: `scale(${boxWidth / 1920},${boxHeight / 1080})` };
-      this.option = { ...this.option, ...obj };
+      // this.option = { ...this.option, ...obj };
       // console.log(boxWidth);
       // console.log(boxHeight);
       console.log(this.option.transform);

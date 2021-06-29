@@ -51,28 +51,31 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  justify-content: center;
-  padding-top: 8px;
+  justify-content: space-between;
+  padding: 8px 0px 50px;
   user-select: none;
-  padding-bottom: 50px;
-  padding-left: 4px;
   &::after {
     content: "";
     display: block;
     transition: 0.2s;
     width: 1160px;
   }
+  
 }
 .item {
+  min-width: 20%;
   width: 258px;
-  height: 184px;
+  height: 204px;
   margin: 16px;
   display: flex;
   flex-direction: column;
   transition: 0.2s;
+  &:last-child {
+    margin-right: auto;
+  }
   .item-img {
     width: 100%;
-    height: 146px;
+    height: 204px;
     position: relative;
     img {
       width: 100%;

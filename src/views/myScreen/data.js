@@ -2,7 +2,7 @@ import typeOption from "../Editor/typeOption";
 export default [
   {
     id: 9527,
-    name: "晓风残月调试模板",
+    name: "晓风残月模板",
     thumbnail:
       "//datav.oss-cn-hangzhou.aliyuncs.com/uploads/images/235dfe2763c5ad16cddb63269c7c8a8c.png",
     list: [
@@ -15,7 +15,7 @@ export default [
         option: {
           backgroundColor: "rgba(14, 14, 14, 1)",
           title: {
-            text: "西梅物采分布图",
+            text: "分布图",
             color: "#F4F4F4",
             fontSize: 60,
             align: "center",
@@ -24,7 +24,7 @@ export default [
         align: "center",
         color: "#F4F4F4",
         fontSize: 60,
-        text: "西梅物采分布图",
+        text: "分布图",
         src: "",
         top: 0,
         type: "title",

@@ -1,17 +1,12 @@
 import axios from "axios";
 import { MessageBox, Message } from "element-ui";
 import store from "@/store";
-// create an axios instance http://localhost:3333
+import baseURL from '@/api/config.js'
 const service = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3333"
-      : "https://vaegin.top/blog",
-  // baseURL: process.env.VUE_APP_BASIC_API, // url = base url + request url
+  baseURL,
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 20000, // request timeout
 });
-console.log(process.env.VUE_APP_BASIC_API);
 // request interceptor
 service.interceptors.request.use(
   (config) => {
