@@ -54,11 +54,11 @@ export default {
     // 识别组件
     componentName() {
       // 模板进入
-      if (this.config.type) {
+      if (this.config.chartType) {
         if (!this.isPage) {
           return this.configList[0].com;
         }
-        switch (this.config.type) {
+        switch (this.config.chartType) {
           case "chart":
             return this.configList[1].com;
             break;

@@ -20,7 +20,7 @@
     @activated="activated"
     @deactivated="deactivated"
   >
-    <component :is="sw(type)" ref="chart" :config="config.option"></component>
+    <component :is="sw(type)" ref="chart" :config="config.chartOption"></component>
   </VueDragResize>
 </template>
 <script>

@@ -3,7 +3,7 @@
     <div class="wrap-editor" :style="optionBG">
       <div class="screen" :style="option">
         <div v-for="(item, key) in list" :key="key" class="items">
-          <Chart :type="item.type" :config="item"></Chart>
+          <Chart :type="item.chartType" :config="item"></Chart>
         </div>
       </div>
     </div>
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { getCharts } from "@/api/charts";
 import Chart from "./chartDetail";
 import templeteList from "../myScreen/data";
 import { mapGetters } from "vuex";

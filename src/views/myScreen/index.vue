@@ -18,7 +18,7 @@
           :name="item.name"
         >
           <span slot="label">
-            <span style="padding: 0 40px;">{{ item.label }}</span>
+            <span style="padding: 0 40px">{{ item.label }}</span>
           </span>
           <div class="box-shaow"></div>
           <div class="main-content">
@@ -27,6 +27,7 @@
               v-if="item.name == 1"
               @tap="tap"
             ></myProjectItem>
+            <myConmonents :list="list" v-if="item.name == 3"></myConmonents>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -36,9 +37,11 @@
 
 <script>
 import myProjectItem from "./myProjectItem";
+import myConmonents from "./myComponents.vue";
+import {getChartList} from '@/api/charts.js'
 export default {
   name: "myScreen",
-  components: { myProjectItem },
+  components: { myProjectItem, myConmonents },
   data() {
     return {
       bgUrl: require("@/assets/echarts/bg-datav.png"),
@@ -61,7 +64,17 @@ export default {
       list: [],
     };
   },
+  created() {
+    this.init()
+  },
   methods: {
+    init() {
+      getChartList().then(res=>{
+        if(res.status == 1) {
+          this.list = res.data.data
+        }
+      })
+    },
     handleClick(e) {
       console.log(e);
     },

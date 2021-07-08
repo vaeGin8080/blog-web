@@ -1,10 +1,10 @@
 import request from "@/utils/request";
 
 // charts
-export function getCharts(query) {
+export function getChartList(query) {
   return request({
-    url: "/charts",
-    method: "get",
-    params: query,
+    url: "/chart/list",
+    method: "post",
+    data: query,
   });
 }

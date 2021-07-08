@@ -8,6 +8,6 @@ export function sw(value) {
       return "Title";
       break;
     default:
-      return "chart";
+      return "";
   }
 }

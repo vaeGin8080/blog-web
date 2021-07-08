@@ -36,7 +36,7 @@
     </el-form-item>
     <el-form-item label="背景颜色">
       <el-color-picker
-        v-model="config.option.backgroundColor"
+        v-model="config.chartOption.backgroundColor"
         show-alpha
         @change="change"
       ></el-color-picker>
@@ -44,7 +44,7 @@
     <el-form-item label="名称">
       <div class="flex">
         <el-input
-          v-model="config.option.title.text"
+          v-model="config.chartOption.title.text"
           placeholder=""
           type="text"
           style="margin-right:10px"
