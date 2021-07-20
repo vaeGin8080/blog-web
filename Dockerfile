@@ -6,6 +6,6 @@ EXPOSE 80
 RUN npm config set registry registry.npm.taobao.org \
     && npm install \
     && npm run build \
-    && cp -r dist/* /root/web/ \
+    && cp -r dist/* /var/www/html \
     && rm -rf /app
 CMD ["nginx","-g","daemon off;"]
