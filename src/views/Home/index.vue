@@ -52,7 +52,7 @@ export default {
           hasNext: true,
         },
         {
-          label: "前端",
+          label: "前端扛把子",
           path: "/home",
           list: [],
           hasNext: true,
