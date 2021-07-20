@@ -1,5 +1,5 @@
 FROM node:12.16.1
-RUN apt-get update \    && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx || apt-get install -y nginx
 WORKDIR /app
 COPY . /app/
 EXPOSE 80
