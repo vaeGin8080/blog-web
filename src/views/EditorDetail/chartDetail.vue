@@ -1,21 +1,21 @@
 <template>
 	<div class="chart-wrap" :style="option">
 		<!-- <chart ref="chart" :config="config.option"></chart> -->
-		<component :is="sw(type)" ref="chart" :config="config.chartOption"></component>
+		<component :is="component" ref="chart" :config="config.chartOption"></component>
 	</div>
 </template>
 
 <script>
-	import chart from "@/components/Charts/chart";
-	import Title from "@/components/Charts/Title";
+	// import chart from "@/components/Charts/chart";
+	// import Title from "@/components/Charts/Title";
 	import {
 		sw
 	} from "@/utils/charts";
 	export default {
 		name: "Chart",
 		components: {
-			chart,
-			Title
+			// chart,
+			// Title
 		},
 		props: {
 			type: {
@@ -34,10 +34,19 @@
 			},
 		},
 		data() {
-			return {};
+			return {
+				component: null
+			};
 		},
 		mounted() {
 			console.log(this.loader);
+			this.loader()
+				.then(() => {
+					this.component = () => this.loader()
+				})
+				.catch(() => {
+					this.component = () => import(`@/components/Charts/chart`)
+				})
 		},
 		computed: {
 			option() {
@@ -52,7 +61,7 @@
 				return obj;
 			},
 			loader() {
-				return () => import(`@/components/Charts/chart`)
+				return () => import(`@/components/Charts/${this.type}`)
 			},
 		},
 		methods: {

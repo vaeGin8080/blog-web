@@ -54,7 +54,7 @@ export function getSendComment(data) {
   });
 }
 
-// 发送评论
+// 删除评论论
 export function deleteComment(query) {
   return request({
     url: "/web/deleteComment",
