@@ -64,7 +64,7 @@ export default {
           hasNext: true,
         },
         {
-          label: "其他",
+          label: "其他技术",
           path: "/home",
           list: [],
           hasNext: true,
