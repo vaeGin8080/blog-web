@@ -16,7 +16,7 @@
     "element-ui": "^2.13.1",
     "highlight.js": "^10.0.2",
     "js-md5": "^0.7.3",
-    "marked": "^1.0.0",
+    "marked": "^4.0.10",
     "mavon-editor": "^2.9.0",
     "nprogress": "^0.2.0",
     "photo-sphere-viewer": "^4.2.1",
